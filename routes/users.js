@@ -17,7 +17,6 @@ router.get('/', (req, res, next) => {
 // Register
 router.all('/register', function(req, res, next) {
     let newUser = new User({
-        name: req.body.name,
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
@@ -61,7 +60,6 @@ router.all('/authenticate', (req, res, next) => {
                 success: true, token: 'JWT '+token,
                 user:{
                     id: user._id,
-                    name: user.name,
                     username: user.username,
                     email: user.email
                 }
