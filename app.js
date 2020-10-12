@@ -30,11 +30,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser Middleware
 app.use(bodyParser.json());
 
-// Passport
+// Morgan- to see the request in terminal
+if(process.env.NODE_ENV==='development'){
+  app.use(morgan('dev'))
+}
+
+// Passport config
+require('./config/passport')(passport);
+
+// Sessions
+app.use(
+  session({
+    secret: 'yoursecret',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+)
+
+
+// Passport Middle ware
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport')(passport);
+
 
 app.use('/users', users)
 

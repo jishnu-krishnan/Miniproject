@@ -5,11 +5,11 @@ const config = require('../config/db');
 
 // USers Schemma
 const UserSchema = mongoose.Schema({
-    email:{
+    mail:{
         type: String,
         required: true
     },
-    username: {
+    name: {
         type: String,
         required: true
     },
@@ -25,8 +25,8 @@ module.exports.getUserByID = function(id, callback){
     User.findById(id, callback);
 }
 
-module.exports.getUserByUsername = function(username, callback){
-    const query = {username: username}
+module.exports.getUserByMail = function(mail, callback){
+    const query = {mail: mail}
     User.findOne(query, callback);
 }
 

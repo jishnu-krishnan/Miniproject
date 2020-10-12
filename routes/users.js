@@ -17,8 +17,8 @@ router.get('/', (req, res, next) => {
 // Register
 router.all('/register', function(req, res, next) {
     let newUser = new User({
-        email: req.body.email,
-        username: req.body.username,
+        mail: req.body.mail,
+        name: req.body.name,
         password: req.body.password
     });
 
@@ -39,10 +39,10 @@ router.get('/addBookmark', (req, res, next) => {
 
 // Authenticate
 router.all('/authenticate', (req, res, next) => {
-    const username =req.body.username;
+    const mail =req.body.mail;
     const password = req.body.password;
 
-    User.getUserByUsername(username, (err, user)=> {
+    User.getUserByMail(mail, (err, user)=> {
         if(err) throw err;
         if(!user){
             return res.json({success: false, msg: 'User not found'});
@@ -60,8 +60,8 @@ router.all('/authenticate', (req, res, next) => {
                 success: true, token: 'JWT '+token,
                 user:{
                     id: user._id,
-                    username: user.username,
-                    email: user.email
+                    name: user.name,
+                    mail: user.mail
                 }
             });
         }else{

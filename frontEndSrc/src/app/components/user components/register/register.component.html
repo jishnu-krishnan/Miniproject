@@ -1,13 +1,13 @@
 <app-guestnavbar></app-guestnavbar>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form (submit)="onRegisterSubmit()">
             <h1>Create Account</h1>
             <br>
             
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="text" placeholder="Name" [(ngModel)]="name" name="name" />
+            <input type="email" placeholder="Email" [(ngModel)]="mail" name="mail"/>
+            <input type="password" placeholder="Password" [(ngModel)]="password" name="password"/>
             <button>Sign Up</button>
             <br>
             <div>

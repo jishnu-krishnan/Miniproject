@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,9 @@ import { LoginComponent } from './components/user components/login/login.compone
 import { DashboardComponent } from './components/user components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/user components/register/register.component';
 import { GuestnavbarComponent } from './components/user components/guestnavbar/guestnavbar.component';
+
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +27,11 @@ import { GuestnavbarComponent } from './components/user components/guestnavbar/g
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ValidateService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

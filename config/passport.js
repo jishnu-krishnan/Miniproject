@@ -7,6 +7,8 @@ require('dotenv').config();
 
 
 module.exports = function(passport){
+    
+    // Password login
     let opts = {};
     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
     opts.secretOrKey = process.env.JWT_KEY;
