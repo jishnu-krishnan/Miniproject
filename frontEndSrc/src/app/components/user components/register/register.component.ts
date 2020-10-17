@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { ValidateService } from '../../../services/validate.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -13,18 +15,59 @@ export class RegisterComponent implements OnInit {
   name: String;
   mail: String;
   password: String;
+  submitted = false;
+  userForm : FormGroup;
 
   constructor(
+    public fb: FormBuilder,
     private validateService : ValidateService, 
     private authService : AuthService,
     private router :Router,
-    private ngZone : NgZone
-    ) { }
+    private ngZone : NgZone,
+    private flashMessages: FlashMessagesService
+
+    ) {
+      this.mainForm();
+     }
 
   ngOnInit(): void {
   }
 
+
+  mainForm(){
+    this.userForm = this.fb.group({
+      mail: ['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password:['',[Validators.required]],
+      name:['',[Validators.required]],
+    })
+  }
+
+  // Getter to access form control
+  get myForm(){
+    return this.userForm.controls;
+  }
+
   onRegisterSubmit(){
+    this.submitted=true;
+    if(!this.userForm.valid){
+      return false;
+    }else{
+      this.authService.registerUser(JSON.stringify(this.userForm.value)).subscribe(res => {
+        console.log(res)
+        if(res.success){
+          console.log('User Successfully Registered');
+          this.router.navigateByUrl('/dashboard')
+        }else{
+          console.log('Somethings wrong');
+          this.router.navigateByUrl('/register')
+        }
+      },(error)=> {
+        console.log(error);
+      });
+    }
+  }
+
+  /*onRegisterSubmit(){
     const user={
       name: this.name,
       mail: this.mail,
@@ -33,7 +76,7 @@ export class RegisterComponent implements OnInit {
       
     }
 
-    //Required fields
+     //Required fields
     if(!this.validateService.validateRegister(user)){
       console.log('Please fill all fields')
       return false;
@@ -44,7 +87,7 @@ export class RegisterComponent implements OnInit {
       console.log('Please fill valid email')
       return false;
     }
-
+ 
     // Register user
     this.authService.registerUser(user).subscribe(res =>{
         console.log('registered')
@@ -53,5 +96,6 @@ export class RegisterComponent implements OnInit {
       }, (error)=> {
         console.log(error)
       });
-  }
+    }
+  */
 }

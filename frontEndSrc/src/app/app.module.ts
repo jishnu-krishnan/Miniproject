@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,8 @@ import { GuestnavbarComponent } from './components/user components/guestnavbar/g
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { FlashMessagesModule,FlashMessagesService } from 'angular2-flash-messages';
+
 
 @NgModule({
   declarations: [
@@ -23,15 +25,18 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
-    GuestnavbarComponent
+    GuestnavbarComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    FlashMessagesModule
   ],
-  providers: [ValidateService,AuthService],
+  providers: [ValidateService,AuthService,FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

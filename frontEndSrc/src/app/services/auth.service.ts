@@ -23,6 +23,30 @@ export class AuthService {
     
   }
   
+  // Login
+  authenticateUser(authCredentials): Observable<any> {
+    let url= `${this.baseUri}/authenticate`
+    return this.http.post(url, authCredentials, {withCredentials:true, headers: this.headers}).pipe(catchError(this.errorMgmt))
+    
+
+  }   
+
+  //Set token
+  storeUserToken(token, user){
+  localStorage.setItem('access_token', token)
+  localStorage.setItem('user', JSON.stringify(user))
+  this.authToken = token
+  this.user = user
+  
+}
+
+  //logout
+  logout() {
+    this.authToken= null;
+    localStorage.clear();
+  }
+
+
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

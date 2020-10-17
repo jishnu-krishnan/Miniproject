@@ -1,12 +1,14 @@
 <div class="navbar-fixed">
-    <nav class="toolbar">
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><i class="large material-icons">bookmark_border</i>BookMark</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a [routerLink]="['/']">Home</a></li>
-          <li><a [routerLink]="['/login']">Login</a></li>
-          <li><a [routerLink]="['/register']">Register</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <nav class="toolbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><i class="large material-icons">bookmark_border</i>BookMark</a>
+      <ul class="right hide-on-med-and-down">
+        <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Home</a></li>
+        <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']">Login</a></li>
+        <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']">Register</a></li>
+        <li  ><a (click)='onLogoutClick()' [routerLink]="['/login']">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

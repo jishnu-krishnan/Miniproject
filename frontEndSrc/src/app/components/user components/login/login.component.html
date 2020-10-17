@@ -2,11 +2,21 @@
 <div class="container" id="container">
 
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form [formGroup]="loginForm" (submit)="onLoginSubmit()">
             <h1>Sign in</h1>
             <br>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email" formControlName="mail"/>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.mail.errors?.required">
+                *Mail id is required.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.mail.errors?.pattern">
+                *Enter valid email.
+            </div>
+            <input type="password" placeholder="Password" formControlName="password"/>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+                *Password is required.
+            </div>
+                
             <a href="#">Forgot your password?</a>
             <button>Sign In</button>
             <br>

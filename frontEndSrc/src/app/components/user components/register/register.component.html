@@ -1,13 +1,25 @@
 <app-guestnavbar></app-guestnavbar>
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-        <form (submit)="onRegisterSubmit()">
+        <form [formGroup]="userForm"  (submit)="onRegisterSubmit()">
             <h1>Create Account</h1>
             <br>
             
-            <input type="text" placeholder="Name" [(ngModel)]="name" name="name" />
-            <input type="email" placeholder="Email" [(ngModel)]="mail" name="mail"/>
-            <input type="password" placeholder="Password" [(ngModel)]="password" name="password"/>
+            <input type="text" placeholder="Name" formControlName="name" />
+            <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+                *Name is required.
+            </div>
+            <input type="email" placeholder="Email" formControlName="mail"/>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.mail.errors?.required">
+                *Mail id is required.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.mail.errors?.pattern">
+                *Enter valid email.
+            </div>
+            <input type="password" placeholder="Password" formControlName="password"/>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+                *Password is required.
+            </div>
             <button>Sign Up</button>
             <br>
             <div>
