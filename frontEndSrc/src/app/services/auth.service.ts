@@ -13,7 +13,7 @@ export class AuthService {
 
   baseUri:string = 'http://localhost:3000/users';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-
+  
   constructor(private http:HttpClient) { }
 
   // Create
@@ -26,7 +26,7 @@ export class AuthService {
   // Login
   authenticateUser(authCredentials): Observable<any> {
     let url= `${this.baseUri}/authenticate`
-    return this.http.post(url, authCredentials, {withCredentials:true, headers: this.headers}).pipe(catchError(this.errorMgmt))
+    return this.http.post(url, authCredentials, { headers: this.headers}).pipe(catchError(this.errorMgmt))
     
 
   }   

@@ -47,19 +47,20 @@ export class LoginComponent implements OnInit {
     }else {
       this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
         console.log(res)
-        //console.log(res.user)
+        console.log(res.user)
         if(res.success){
           console.log('logined')
+
           this.authService.storeUserToken(res.token, res.user);
           
-          this.router.navigateByUrl('/dashboard')
-        }else{
-         // this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
+          this.ngZone.run(() =>this.router.navigateByUrl('/dashboard'))
+        } else{
+          this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
           this.router.navigateByUrl('/login')
 
         }
       },(error)=> {
-        console.log(error)
+        console.log("asd",error)
       });
     }
   }

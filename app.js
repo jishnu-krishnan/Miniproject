@@ -22,7 +22,14 @@ const app = express();
 const users = require('./routes/users');
 
 // CORS Middleware
+
 app.use(cors());
+
+app.use(cors({
+  origin:['http://localhost:4200','http://127.0.0.1:4200'],
+  credentials:true
+}));
+ 
 
 // Ser Static Floder
 app.use(express.static(path.join(__dirname, 'public')));
