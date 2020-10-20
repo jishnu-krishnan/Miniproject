@@ -15,7 +15,7 @@ import { GuestnavbarComponent } from './components/user components/guestnavbar/g
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FlashMessagesModule,FlashMessagesService } from 'angular2-flash-messages';
-
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { FlashMessagesModule,FlashMessagesService } from 'angular2-flash-message
     ReactiveFormsModule,
     FlashMessagesModule
   ],
-  providers: [ValidateService,AuthService,FlashMessagesService],
+  providers: [ValidateService,AuthService,FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

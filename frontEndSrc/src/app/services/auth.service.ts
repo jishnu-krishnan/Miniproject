@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders,HttpClient } from '@angular/common/http';
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, BehaviorSubject } from "rxjs";
 import { map, catchError } from "rxjs/operators";
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,12 @@ import { map, catchError } from "rxjs/operators";
 export class AuthService {
   authToken: any;
   user: any;
+  helper = new JwtHelperService();
+
+ /*  private loggedIn: BehaviorSubject<boolean> =new BehaviorSubject<boolean>(false);
+  get isLoggedIn(){
+    return this.loggedIn.asObservable();
+  } */
 
   baseUri:string = 'http://localhost:3000/users';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -46,6 +52,11 @@ export class AuthService {
     localStorage.clear();
   }
 
+  // Nav bar component hide
+  loggedIn(){
+    let isToken=localStorage.getItem('access_token');
+    return this.helper.isTokenExpired(isToken);
+  }
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
