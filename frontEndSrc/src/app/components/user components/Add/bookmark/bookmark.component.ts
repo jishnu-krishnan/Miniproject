@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CKEditorModule } from 'ng2-ckeditor';
+
+
 @Component({
   selector: 'app-bookmark',
   templateUrl: './bookmark.component.html',
@@ -11,5 +13,5 @@ export class BookmarkComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  ckeditorContent="gh";
+  
 }

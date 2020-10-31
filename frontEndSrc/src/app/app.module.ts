@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { MatButtonModule  } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +22,7 @@ import { FlashMessagesModule,FlashMessagesService } from 'angular2-flash-message
 import { AuthGuard } from './services/auth.guard';
 import { BookmarkComponent } from './components/user components/Add/bookmark/bookmark.component';
 import { ContentComponent } from './components/user components/Add/content/content.component';
+import { PlusButtonComponent } from './components/user components/plus-button/plus-button.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import { ContentComponent } from './components/user components/Add/content/conte
     GuestnavbarComponent,
     BookmarkComponent,
     ContentComponent,
+    PlusButtonComponent,
     
   ],
   imports: [
@@ -40,7 +45,10 @@ import { ContentComponent } from './components/user components/Add/content/conte
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [ValidateService,AuthService,FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
