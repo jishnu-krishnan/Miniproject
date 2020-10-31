@@ -20,6 +20,7 @@ connectDB();
 const app = express();
 
 const users = require('./routes/users');
+const bookmark =require('./routes/bookmark')
 
 // CORS Middleware
 
@@ -63,7 +64,7 @@ app.use(passport.session());
 
 
 app.use('/users', users)
-
+app.use('/bookmark',bookmark)
 // Index Route
 app.get('/',(req,res) => {
     res.send('invalid');

@@ -14,11 +14,16 @@
 <body>
   <app-root>Loading...</app-root>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
   <script>
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.fixed-action-btn');
-      var instances = M.FloatingActionButton.init(elems);
-  });
-  </script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var sel =document.querySelectorAll('#status');
+    var instances = M.FormSelect.init(sel);
+    var instances = M.FloatingActionButton.init(elems);
+    });
+
+    CKEDITOR.replace('body');
+</script>
 </body>
 </html>

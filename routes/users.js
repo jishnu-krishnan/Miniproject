@@ -32,10 +32,6 @@ router.all('/register', function(req, res, next) {
 
 });
 
-// Create New bookmark
-router.get('/addBookmark', (req, res, next) => {
-    res.send('Create Bookmark');
-});
 
 // Authenticate
 router.all('/authenticate', (req, res, next) => {
