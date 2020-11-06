@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     }else {
       this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
         console.log(res)
-        console.log(res.user)
+        //console.log(res.user)
         if(res.success){
           console.log('logined')
 

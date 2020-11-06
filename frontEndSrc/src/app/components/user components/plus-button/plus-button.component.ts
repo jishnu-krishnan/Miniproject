@@ -11,12 +11,12 @@ export class PlusButtonComponent implements OnInit {
     {
       icon: 'mode_edit',
       class: 'btn-floating yellow',
-      route: '/bookmark/edit'
+      route: "['/bookmark/edit']"
     },
     {
       icon: 'bookmark',
       class: 'btn-floating red',
-      route: '/bookmark/add'
+      route: "['/bookmark/add']"
     }
   ];
   buttons = [];

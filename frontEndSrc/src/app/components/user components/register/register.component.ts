@@ -49,14 +49,19 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit(){
     this.submitted=true;
+    //console.log(JSON.stringify(this.userForm.value))
     if(!this.userForm.valid){
       return false;
+      
     }else{
       this.authService.registerUser(JSON.stringify(this.userForm.value)).subscribe(res => {
         console.log(res)
+        
         if(res.success){
+          this.authService.storeUserToken(res.token, res.user);
+
           console.log('User Successfully Registered');
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('users/dashboard')
         }else{
           console.log('Somethings wrong');
           this.router.navigateByUrl('/register')

@@ -20,7 +20,7 @@ export class BookmarkComponent implements OnInit {
   submitted= false;
   bookmarkForm: FormGroup;
 
-  STATUS:any = ['Private', 'Public']
+  //STATUS:any = ['Private', 'Public']
 
   public Editor = ClassicEditor;
 
@@ -38,15 +38,8 @@ export class BookmarkComponent implements OnInit {
       link: ['',[Validators.required]],
       title: ['',[Validators.required]],
       //status: ['',[Validators.required]],
-      status:[''],
+      status:['private'],
       body: ['',[Validators.required]]
-    })
-  }
-
-  // Choose designation with select dropdown
-  updateProfile(e){
-    this.bookmarkForm.get('status').setValue(e, {
-      onlySelf: true
     })
   }
 
@@ -78,7 +71,7 @@ export class BookmarkComponent implements OnInit {
         console.log(res)
         if(res.success){
           console.log('User Successfully Registered');
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('/users/dashboard')
         }else{
           console.log('Somethings wrong');
           this.router.navigateByUrl('/bookmark/add')

@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/db');
 const User = require('../model/user');
+const bcrypt = require('bcryptjs');
 
 require('dotenv').config();
 const secret = process.env.JWT_KEY;
@@ -24,12 +25,28 @@ router.all('/register', function(req, res, next) {
 
     User.addUser(newUser, (err, user) =>{
         if(err){
+            //console.log(err)
             res.json({success: false, msg:'Failed to register user'});   
         }else {
-            res.json({success: true, msg:'User registered'});   
+            //console.log(user);
+            const token = jwt.sign(user.toJSON(), process.env.JWT_KEY, {
+                expiresIn: 604800 // one week
+            });
+            
+            res.json({
+                success: true, token: 'JWT '+token,
+                user:{
+                    id: user._id,
+                    name: user.name,
+                    mail: user.mail
+                }
+            });
+            //res.json({success: true, msg:'User registered'}); 
         }
     });
+ 
 
+    
 });
 
 

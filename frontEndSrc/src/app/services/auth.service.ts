@@ -26,7 +26,8 @@ export class AuthService {
   // Create
   registerUser(user): Observable<any> {
     let url= `${this.baseUri}/register`
-    return this.http.post(url, user).pipe(catchError(this.errorMgmt))
+    //console.log(user)
+    return this.http.post(url, user,{headers:this.headers} ).pipe(catchError(this.errorMgmt))
     
   }
   
@@ -67,11 +68,11 @@ export class AuthService {
   }
 
   // User Dashboard
-  showDashboard(){
+  /* showDashboard(){
     //headers = new HttpHeaders().set('Content-Type', 'application/json');
     let url= `${this.bookmarkUri}/dashboard`
     return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
-  }
+  } */
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

@@ -21,12 +21,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.showDashboard().subscribe(res => {
+    /* this.authService.showDashboard().subscribe(res => {
       console.log(res)
     },(error)=> {
       console.log(error)
     });
-  }
+   */
 
- 
+}
 }
