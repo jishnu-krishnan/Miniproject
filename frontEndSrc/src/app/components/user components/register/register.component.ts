@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
   mainForm(){
     this.userForm = this.fb.group({
       mail: ['',[Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      password:['',[Validators.required]],
+      password:['',[Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
+    ]],
       name:['',[Validators.required]]
     })
   }
@@ -71,7 +72,6 @@ export class RegisterComponent implements OnInit {
       });
     }
   }
-
   /*onRegisterSubmit(){
     const user={
       name: this.name,
