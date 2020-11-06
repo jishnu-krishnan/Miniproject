@@ -5,46 +5,89 @@
 <div class="card">
 <h3>Add Bookmark</h3>
 <div class="row">
-    <form action="" method="POST" class="col s12">
+    <form [formGroup]="bookmarkForm" (submit)="onSubmit()" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="link" name="link">
+                <input type="text" formControlName="link">
+                <div class="invalid-feedback" *ngIf="submitted && myForm.link.errors?.required">
+                    *Link is required.
+                </div> 
                 <label for="link">Link</label>
             </div>
         </div>
+
+        <div class="row">
+            <div >
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="private" selected>Private</mat-option>
+                        <mat-option value="public">Public</mat-option>
+                    </mat-select>
+                </mat-form-field>        
+            </div>
+        </div>
+
         <div class="row">
             <div class="input-field">
-                <input type="text" id="title" name="title">
+                <input type="text" formControlName="title">
+                <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
+                    *Title is required.
+                </div> 
                 <label for="title">Title</label>
             </div>
         </div>
-
-        <div class="row">
+        
+        
+        <!-- <div class="row">
             <div class="input-field">
-                <select id="status" name="status">
-                    <option value="public" selected>Public</option>
-                    <option value="private" >Private</option>
+                <select name="status" formControlName="status">
+                    <option  value="private" selected>Private</option>
+                    <option value="public" >Public</option> 
                 </select>
                 <label for="status">Status</label>
-                
             </div>
-        </div>
-
-        <!-- <ckeditor
-            [(ngModel)]="ckeditorContent">
-            
-        </ckeditor>
- -->
-        <div class="row">
+        </div> -->
+       <!--  <div class="row">
             <div class="input-field">
-                <h5>Description:</h5>
-                <textarea id="body" name="body"></textarea>
+                <select class="custom-select form-control" name="status1" formControlName="status" (change)="updateProfile($event.target.value)">
+                    <option value="">Choose...</option>
+                    <option *ngFor="let statuss of STATUS" value="{{statuss}}">{{statuss}}
+                    </option>
+                </select> -->
+                <!-- <div class="invalid-feedback" *ngIf="submitted && myForm.status.errors?.required">
+                    Choose designation.
+                </div> -->
+                <!-- <label for="status">Status</label>
             </div>
+        </div> -->
+        <!-- <div class="form-group">
+            <label for="inputPassword3">Designation</label>
+            <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+              formControlName="designation">
+              <option value="">Choose...</option>
+              <option *ngFor="let employeeProfile of EmployeeProfile" value="{{employeeProfile}}">{{employeeProfile}}
+              </option>
+            </select>
+ -->            <!-- error -->
+            <!-- <div class="invalid-feedback" *ngIf="submitted && myForm.designation.errors?.required">
+              Choose designation.
+            </div>
+        </div> -->
+
+        <div class="row">
+            <label for="description">Description</label>
+            <div class="input-field">
+                
+                <ckeditor [editor]="Editor" data="" formControlName="body" ></ckeditor>
+            </div>
+            
         </div>
 
         <div class="row">
             <input type="submit" value="Save" class="btn">
-            <a href="#" class="btn orange">Cancel</a>
+            <!-- <button>Sign Up</button> -->
+            <a class="btn orange">Cancel</a>
         </div>
     </form>
 </div>

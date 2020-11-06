@@ -1,8 +1,13 @@
 const express = require('express');
-const bookmark = require('../model/bookmark');
-const router = express.Router();
 const Bookmark = require('../model/bookmark');
+const router = express.Router();
+//const Bookmark = require('../model/bookmark');
+const localStorage = require('node-localstorage')
 
+
+//localStorage = new LocalStorage('./scratch')
+
+var isNode = typeof module !== 'undefined'
 require('dotenv').config();
 
 router.get('/', (req, res, next) => {
@@ -26,14 +31,39 @@ router.post('/add', async (req, res, next) => {
     Bookmark.addBookmark(newBookmark,(err, bookmark) =>{
         if(err){
             console.log(err);
-            res.json({success:false, msg:'failed to new bookmark'});
+            res.json({success:false, msg:'failed to added'});
         } else {
             res.json({success:true, msg:'successfully added'});
         }
     });
 });
 
+router.get('/dashboard',(req,res,next)=> {
 
-
+    if(!isNode){
+        //use the local storage
+        var user = localStorage.getItem(user)
+     }
+    //localStorage.getItem
+    //const user= JSON.parse(localStorage.getItem('user'))
+    Bookmark.getBookmarkByUser(user,(err, bookmark)=> {
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success: false, msg:'No bookmark added'})
+        }else {
+            console.log(bookmark)
+        }
+    })
+    //res.json({user:req.user});
+    console.log(user)
+})
+/* Bookmark.getBookmarkByUser(bookmark,(err,bookmark)=> {
+    if(err){
+        console.log(err);
+        res.json({success:false, msg:'loading failed'});
+    } else {
+        res.json({success:true, msg:'success'});
+    }
+}); */
 
 module.exports = router;

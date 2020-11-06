@@ -29,10 +29,16 @@ const BookmarkSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model('Bookmark', BookmarkSchema)
+const Bookmark = module.exports = mongoose.model('Bookmark', BookmarkSchema)
 
 
 module.exports.addBookmark = function(newBookmark, callback){
   //if(err) throw err;
   newBookmark.save(callback);
+}
+
+// show dashboard items
+module.exports.getBookmarkByUser = function(id, callback){
+  const query = {user:id}
+  Bookmark.find(query,callback);
 }
