@@ -18,6 +18,7 @@ export class AuthService {
   } */
 
   baseUri:string = 'http://localhost:3000/users';
+  bookmarkUri:String = 'http://localhost:3000/bookmark'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http:HttpClient) { }
@@ -56,6 +57,20 @@ export class AuthService {
   loggedIn(){
     let isToken=localStorage.getItem('access_token');
     return this.helper.isTokenExpired(isToken);
+  }
+
+  // Create bookmark
+  createBookmark(bookmark): Observable<any> {
+    let url= `${this.bookmarkUri}/add`
+    return this.http.post(url, bookmark ,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+    
+  }
+
+  // User Dashboard
+  showDashboard(){
+    //headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let url= `${this.bookmarkUri}/dashboard`
+    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Error handling 
