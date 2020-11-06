@@ -76,11 +76,11 @@ export class AuthService {
   }
 
   // User Dashboard
-  /* showDashboard(){
+   showDashboard(id){
     //headers = new HttpHeaders().set('Content-Type', 'application/json');
-    let url= `${this.bookmarkUri}/dashboard`
-    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
-  } */
+    let url= `${this.bookmarkUri}/dashboard/${id}`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  } 
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

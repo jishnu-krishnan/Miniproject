@@ -38,24 +38,20 @@ router.post('/add', async (req, res, next) => {
     });
 });
 
-router.get('/dashboard',(req,res,next)=> {
+router.get('/dashboard/:id',(req,res,next)=> {
 
-    if(!isNode){
-        //use the local storage
-        var user = localStorage.getItem(user)
-     }
     //localStorage.getItem
     //const user= JSON.parse(localStorage.getItem('user'))
-    Bookmark.getBookmarkByUser(user,(err, bookmark)=> {
+    Bookmark.getBookmarkByUser(req.params.id,(err, bookmark)=> {
         if(err) throw err;
         if(!bookmark){
             return res.json({success: false, msg:'No bookmark added'})
         }else {
-            console.log(bookmark)
+            return res.json(bookmark)
         }
     })
     //res.json({user:req.user});
-    console.log(user)
+    
 })
 /* Bookmark.getBookmarkByUser(bookmark,(err,bookmark)=> {
     if(err){

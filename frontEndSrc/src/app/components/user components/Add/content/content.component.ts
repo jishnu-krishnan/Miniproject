@@ -55,12 +55,11 @@ export class ContentComponent implements OnInit {
       user:user.id
     } 
  
- console.log(JSON.stringify(cm))
+ //console.log(JSON.stringify(cm))
  if(!this.contentForm.valid){
   return false;
  } else {
-   console.log(this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{}))
-   this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{
+    this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{
     console.log(res)
     if(res.success){
         console.log('User Successfully Content');

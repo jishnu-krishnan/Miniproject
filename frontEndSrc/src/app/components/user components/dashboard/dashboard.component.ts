@@ -10,7 +10,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+bookmark :any=[];
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -20,13 +20,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    /* this.authService.showDashboard().subscribe(res => {
+    const user= JSON.parse(localStorage.getItem('user'))
+     this.authService.showDashboard(user.id).subscribe(res => {
       console.log(res)
+      this.bookmark=res
+      //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
     });
-   */
-
 }
 }
