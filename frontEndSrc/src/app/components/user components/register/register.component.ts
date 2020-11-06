@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
         console.log(res)
         if(res.success){
           console.log('User Successfully Registered');
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('/users/dashboard')
         }else{
           console.log('Somethings wrong');
           this.router.navigateByUrl('/register')

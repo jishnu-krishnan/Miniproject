@@ -18,7 +18,8 @@ export class AuthService {
   } */
 
   baseUri:string = 'http://localhost:3000/users';
-  bookmarkUri:String = 'http://localhost:3000/bookmark'
+  bookmarkUri:String = 'http://localhost:3000/bookmark';
+  contentUri:String = 'http://localhost:3000/content';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http:HttpClient) { }
@@ -63,6 +64,13 @@ export class AuthService {
   createBookmark(bookmark): Observable<any> {
     let url= `${this.bookmarkUri}/add`
     return this.http.post(url, bookmark ,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+    
+  }
+
+  //Create Content
+  createContent(content): Observable<any> {
+    let url= `${this.contentUri}/add`
+    return this.http.post(url, content ,{headers:this.headers}).pipe(catchError(this.errorMgmt))
     
   }
 
