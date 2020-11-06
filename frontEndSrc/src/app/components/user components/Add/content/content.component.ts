@@ -16,7 +16,7 @@ export class ContentComponent implements OnInit {
   submitted= false;
   contentForm: FormGroup;
 
-  STATUS:any = ['Private', 'Public']
+  //STATUS:any = ['Private', 'Public']
 
   public Editor = ClassicEditor;
 
@@ -31,7 +31,7 @@ export class ContentComponent implements OnInit {
       //link: ['',[Validators.required]],
       title: ['',[Validators.required]],
       //status: ['',[Validators.required]],
-      status:[''],
+      status:['private'],
       body: ['',[Validators.required]]
     })
   }
@@ -54,8 +54,25 @@ export class ContentComponent implements OnInit {
       body:c.body,
       user:user.id
     } 
- //console.log(JSON.stringify(c))
- //console.log(user.id)
+ 
+ console.log(JSON.stringify(cm))
+ if(!this.contentForm.valid){
+  return false;
+ } else {
+   console.log(this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{}))
+   this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{
+    console.log(res)
+    if(res.success){
+        console.log('User Successfully Content');
+        this.router.navigateByUrl('/users/dashboard')
+    } else {
+        console.log('Somethings wrong');
+        this.router.navigateByUrl('/content/add')
+    }
+   },(error)=> {
+     console.log(error)
+   });
+  }
   }
 
 }

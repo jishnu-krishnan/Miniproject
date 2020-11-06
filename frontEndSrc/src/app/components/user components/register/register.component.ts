@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
           this.authService.storeUserToken(res.token, res.user);
 
           console.log('User Successfully Registered');
-          this.router.navigateByUrl('users/dashboard')
+          this.router.navigateByUrl('/users/dashboard')
         }else{
           console.log('Somethings wrong');
           this.router.navigateByUrl('/register')

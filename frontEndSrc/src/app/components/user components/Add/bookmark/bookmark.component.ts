@@ -70,7 +70,7 @@ export class BookmarkComponent implements OnInit {
       this.authService.createBookmark(JSON.stringify(bm)).subscribe(res => {
         console.log(res)
         if(res.success){
-          console.log('User Successfully Registered');
+          console.log('User Successfully Bookmark');
           this.router.navigateByUrl('/users/dashboard')
         }else{
           console.log('Somethings wrong');
