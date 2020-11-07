@@ -2,7 +2,8 @@ const express = require('express');
 const Bookmark = require('../model/bookmark');
 const router = express.Router();
 //const Bookmark = require('../model/bookmark');
-const localStorage = require('node-localstorage')
+const localStorage = require('node-localstorage');
+const bookmark = require('../model/bookmark');
 
 
 //localStorage = new LocalStorage('./scratch')
@@ -38,6 +39,8 @@ router.post('/add', async (req, res, next) => {
     });
 });
 
+// @desc show bookmark in dashboard
+// @route GET /bookmark/dashboard/:id
 router.get('/dashboard/:id',(req,res,next)=> {
 
     //localStorage.getItem
@@ -45,7 +48,7 @@ router.get('/dashboard/:id',(req,res,next)=> {
     Bookmark.getBookmarkByUser(req.params.id,(err, bookmark)=> {
         if(err) throw err;
         if(!bookmark){
-            return res.json({success: false, msg:'No bookmark added'})
+            return res.json({success: false, msg:'No bookmark found'})
         }else {
             return res.json(bookmark)
         }
@@ -53,6 +56,22 @@ router.get('/dashboard/:id',(req,res,next)=> {
     //res.json({user:req.user});
     
 })
+
+//@desc delete bookmark
+// @route DELETE /bookmark/delete/:id
+router.delete('/delete/:id',(req,res,next) => {
+    //console.log(req.params.id)
+    Bookmark.deleteBookmark(req.params.id,(err,bookmark)=>{
+
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success:false, msg:'No bookmark found'})
+        } else {
+            return res.status(200).json(bookmark)
+        }
+    })
+});
+
 /* Bookmark.getBookmarkByUser(bookmark,(err,bookmark)=> {
     if(err){
         console.log(err);

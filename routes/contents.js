@@ -1,4 +1,5 @@
 const express = require('express');
+const content = require('../model/content');
 const Content = require('../model/content');
 const router = express.Router();
 
@@ -29,5 +30,37 @@ router.post('/add', async(req, res, next)=> {
     });
 });
 
+// @desc show content in dashboard
+// @route GET /content/dashboard/:id
+router.get('/dashboard/:id',(req,res,next)=> {
+
+    //localStorage.getItem
+    //const user= JSON.parse(localStorage.getItem('user'))
+    Content.getContentByUser(req.params.id,(err, content)=> {
+        if(err) throw err;
+        if(!content){
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.json(content)
+        }
+    })
+    //res.json({user:req.user});
+    
+})
+
+//@desc delete content
+// @route DELETE /content/delete/:id
+router.delete('/delete/:id',(req,res,next) => {
+    //console.log(req.params.id)
+    Content.deleteContent(req.params.id,(err,content)=>{
+
+        if(err) throw err;
+        if(!content){
+            return res.json({success:false, msg:'No content found'})
+        } else {
+            return res.status(200).json(content)
+        }
+    })
+});
 
 module.exports = router;

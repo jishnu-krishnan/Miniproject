@@ -84,9 +84,24 @@ router.all('/authenticate', (req, res, next) => {
     });
 });
 
-// Profile
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+/* // Profile
+router.get('/profile/:id', passport.authenticate('jwt', {session:false}), (req, res, next) => {
     res.json({user:req.user});
+
+}); */
+//get profile
+router.get('/profile/:id',(req,res,next) => {
+    //console.log(req.params.id)
+    User.getUserByID(req.params.id,(err,user)=>{
+
+        if(err) throw err;
+        if(!user){
+            return res.json({success:false, msg:'No user found'})
+        } else {
+            return res.status(200).json(user)
+        }
+    })
 });
+
 
 module.exports = router;

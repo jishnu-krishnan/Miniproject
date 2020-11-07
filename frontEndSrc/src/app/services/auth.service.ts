@@ -31,7 +31,14 @@ export class AuthService {
     return this.http.post(url, user,{headers:this.headers} ).pipe(catchError(this.errorMgmt))
     
   }
-  
+  // Get profile
+  getProfile(id): Observable<any> {
+    let url= `${this.baseUri}/profile/${id}`
+    //console.log(user)
+    return this.http.get(url,{headers:this.headers} ).pipe(catchError(this.errorMgmt))
+    
+  }
+
   // Login
   authenticateUser(authCredentials): Observable<any> {
     let url= `${this.baseUri}/authenticate`
@@ -81,6 +88,24 @@ export class AuthService {
     let url= `${this.bookmarkUri}/dashboard/${id}`
     return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   } 
+
+  //show user content on dashboard
+  showContent(id){
+    let url= `${this.contentUri}/dashboard/${id}`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // Delete bookmark
+  deletebookmark(id){
+    let url= `${this.bookmarkUri}/delete/${id}`
+    return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // Delete Content on user dashboard
+  deleteContent(id){
+    let url= `${this.contentUri}/delete/${id}`
+    return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

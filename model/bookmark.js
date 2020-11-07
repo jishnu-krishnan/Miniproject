@@ -42,3 +42,10 @@ module.exports.getBookmarkByUser = function(id, callback){
   const query = {user:id}
   Bookmark.find(query,callback);
 }
+
+//delete user boomark
+module.exports.deleteBookmark = function(id ,callback){
+  
+  const query = {_id: id}
+  Bookmark.findOneAndRemove(query,callback)
+}

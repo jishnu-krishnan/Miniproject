@@ -1,25 +1,40 @@
 <app-guestnavbar></app-guestnavbar>
 <app-plus-button></app-plus-button>
 
-  <div class="container">
-    <h3>Welcome </h3>
+  <div class="container" >
+    <h3>Welcome {{profile}}</h3>
     <p>Your bookmarks & contents is here,</p>
   </div>
-
+<h4 class="center">Bookmarks<hr width="150px"></h4>
   <div class="container">
     <div class="row">
       <div class="col s12 m7">
         <div class="card" *ngFor="let val of bookmark">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
-            
-            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDelete(val._id)"><i class="material-icons">delete</i></a>
           </div>
           <div class="card-content" >
             <h4>{{val.title}}</h4>
             <p>{{val.link}}</p>
             <p>{{val.body}}</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h4 class="center">Contents<hr width="150px"></h4>
+  <div class="row">
+    <div class="col s12 m7">
+      <div class="card" *ngFor="let con of content">
+        <div class="card-image" >
+          <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
+            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
+        </div>
+        <div class="card-content" >
+          <h4>{{con.title}}</h4>
+          <p>{{con.body}}</p>
         </div>
       </div>
     </div>
