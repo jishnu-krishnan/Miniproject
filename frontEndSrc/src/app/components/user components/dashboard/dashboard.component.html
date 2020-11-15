@@ -8,16 +8,20 @@
 <h4 class="center">Bookmarks<hr width="150px"></h4>
   <div class="container">
     <div class="row">
-      <div class="col s12 m7">
-        <div class="card" *ngFor="let val of bookmark">
+      <div class="col s12 m6 l6" *ngFor="let val of bookmark">
+        <div class="card">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
               <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDelete(val._id)"><i class="material-icons">delete</i></a>
           </div>
-          <div class="card-content" >
-            <h4>{{val.title}}</h4>
-            <p>{{val.link}}</p>
+          <div class="card-content">
+            
+            <h4>{{val.title}}
+            <a class="btn-floating blue" [routerLink]="['/bookmark/add',val._id]" ><i class="material-icons">edit</i></a>
+            </h4>
+            <a target="_blank" href="{{val.link}}">{{val.link}}</a>
             <p>{{val.body}}</p>
+            
           </div>
         </div>
       </div>
@@ -25,19 +29,20 @@
   </div>
 
 <h4 class="center">Contents<hr width="150px"></h4>
+<div class="container">
   <div class="row">
-    <div class="col s12 m7">
-      <div class="card" *ngFor="let con of content">
+      <div class="card col s12 m6 l6" *ngFor="let con of content">
         <div class="card-image" >
           <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
             <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
         </div>
-        <div class="card-content" >
-          <h4>{{con.title}}</h4>
+        <div class="card-content" >  
+          
+          <h4>{{con.title}} 
+          <a class="btn-floating blue" [routerLink]="['/content/edit']"><i class="material-icons">edit</i></a>
+          </h4>
           <p>{{con.body}}</p>
         </div>
       </div>
-    </div>
   </div>
-
- 
+</div>

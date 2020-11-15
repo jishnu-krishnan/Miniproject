@@ -57,7 +57,7 @@ router.get('/dashboard/:id',(req,res,next)=> {
     
 })
 
-//@desc delete bookmark
+// @desc delete bookmark
 // @route DELETE /bookmark/delete/:id
 router.delete('/delete/:id',(req,res,next) => {
     //console.log(req.params.id)
@@ -67,10 +67,55 @@ router.delete('/delete/:id',(req,res,next) => {
         if(!bookmark){
             return res.json({success:false, msg:'No bookmark found'})
         } else {
-            return res.status(200).json(bookmark)
+            return res.status(200).json({success:true, msg:'Bookmark deleted'})
         }
     })
 });
+
+// @desc Show bookmark in edit form
+// @route GET /bookmark/add/:id
+router.get('/add/:id',(req,res,next)=>{
+    Bookmark.showBookmark(req.params.id,(err,bookmark)=>{
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success:false,msg:'No bookmark found'});
+        } else {
+            return res.json(bookmark)
+        }
+    })
+})
+
+// @desc edit bookmark
+// @route PUT /bookmark/add/:id
+router.put('/add/:id',(req,res,next)=>{
+    /* let editBookmark =new Bookmark({
+        _id:req.body.id,
+        link: req.body.link,
+        title: req.body.title,
+        body: req.body.body,
+        status: req.body.status,
+        user: req.body.user,
+        createrdAt: req.body.createrdAt
+    }); */
+    Bookmark.findByIdAndUpdate(req.params.id,{$set: req.body},(error,data)=>{
+        if(error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+        }
+    })
+    
+    /* Bookmark.editBookmark(req.params.id,newBookmark,(err,bookmark)=>{
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success:false,msg:'No bookmark found'});
+        } else {
+            return res.json({success:true,msg:'successfully edited'})
+        }
+    }) */
+})
+
 
 /* Bookmark.getBookmarkByUser(bookmark,(err,bookmark)=> {
     if(err){

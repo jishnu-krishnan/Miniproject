@@ -83,28 +83,52 @@ export class AuthService {
   }
 
   // User Dashboard
-   showDashboard(id){
+   showDashboard(userid){
     //headers = new HttpHeaders().set('Content-Type', 'application/json');
-    let url= `${this.bookmarkUri}/dashboard/${id}`
+    let url= `${this.bookmarkUri}/dashboard/${userid}`
     return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   } 
 
   //show user content on dashboard
-  showContent(id){
-    let url= `${this.contentUri}/dashboard/${id}`
+  showContent(userid){
+    let url= `${this.contentUri}/dashboard/${userid}`
     return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Delete bookmark
-  deletebookmark(id){
-    let url= `${this.bookmarkUri}/delete/${id}`
+  deletebookmark(bookmarkid){
+    let url= `${this.bookmarkUri}/delete/${bookmarkid}`
+    return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+    
+  }
+
+  // Show bookmark in editing form
+  showBookmark(bookmarkid){
+    let url=`${this.bookmarkUri}/add/${bookmarkid}`
+    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+
+  }
+
+  // Edit bookmark
+  editBookmark(bookmarkid,bookmark){
+    console.log(bookmarkid)
+    let url=`${this.bookmarkUri}/add/${bookmarkid}`
+    return this.http.put(url,bookmark,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // show bookmark in edit form
+
+
+  // Delete Content on user dashboard
+  deleteContent(contentid){5
+    let url= `${this.contentUri}/delete/${contentid}`
     return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
-  // Delete Content on user dashboard
-  deleteContent(id){
-    let url= `${this.contentUri}/delete/${id}`
-    return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  // Edit content
+  editContent(contentid){
+    let url=`${this.contentUri}/edit/${contentid}`
+    return this.http.post(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Error handling 

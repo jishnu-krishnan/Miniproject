@@ -49,3 +49,15 @@ module.exports.deleteBookmark = function(id ,callback){
   const query = {_id: id}
   Bookmark.findOneAndRemove(query,callback)
 }
+
+//show bookmark in edit form 
+module.exports.showBookmark=function(id,callback){
+  const query = {_id:id}
+  Bookmark.findById(query,callback)
+}
+
+// edit bookmark
+module.exports.editBookmark=function(id,bm,callback){
+  const query = {_id:id}
+  Bookmark.findByIdAndUpdate(query,bm,callback)
+}

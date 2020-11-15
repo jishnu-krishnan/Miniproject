@@ -8,7 +8,7 @@
     <form [formGroup]="bookmarkForm" (submit)="onSubmit()" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="link">
+                <input type="text" formControlName="link" value="{{bookmark.link}}">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.link.errors?.required">
                     *Link is required.
                 </div> 
@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="title">
+                <input type="text" formControlName="title" value="{{bookmark.title}}">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
                     *Title is required.
                 </div> 
@@ -79,7 +79,7 @@
             <label for="description">Description</label>
             <div class="input-field">
                 
-                <ckeditor [editor]="Editor" data="" formControlName="body" ></ckeditor>
+                <ckeditor [editor]="Editor" [data]="data" data-="gdgdd" formControlName="body" ></ckeditor>
             </div>
             
         </div>

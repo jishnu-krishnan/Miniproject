@@ -5,16 +5,16 @@
     </button>
     <div>
       
-      <!-- <button *ngFor="let btn of buttons" class="{{btn.class}}">
+      <button *ngFor="let btn of buttons" class="{{btn.class}}">
         
-       <a [routerLink]="['/bookmark/add']"><i class="material-icons">{{btn.icon}}</i></a>
-      </button> -->
-      <button class="btn-floating red">
+       <a [routerLink]="[btn.route]"><i class="material-icons">{{btn.icon}}</i></a>
+      </button> 
+      <!-- <button class="btn-floating red">
         <a [routerLink]="['/bookmark/add']"><i class="material-icons">bookmark</i></a>
       </button>
       <button class="btn-floating yellow">
         <a [routerLink]="['/content/add']"><i class="material-icons">mode_edit</i></a>
-      </button>
+      </button> -->
       
     </div>
 </div>

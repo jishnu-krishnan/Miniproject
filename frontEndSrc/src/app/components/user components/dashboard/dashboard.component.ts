@@ -51,14 +51,37 @@ profile :String;
     if(window.confirm('Are you sure?')){
       this.authService.deletebookmark(id).subscribe(res => {
       console.log(res)
-    });
+      this.ngOnInit();
+      },(error)=>{
+        console.log(error)
+      });
+    }
   }
+
+  onEditBookmark(id){
+     this.authService.showBookmark(id).subscribe(res => {
+     // this.ngOnInit();
+    },(error)=>{
+      console.log(error)
+    }); 
   }
+
   onDeleteContent(id){
     if(window.confirm('Are you sure?')){
       this.authService.deleteContent(id).subscribe(res => {
-      console.log(res)
-    });
+      //console.log(res)
+      this.ngOnInit();
+      },(error)=>{
+        console.log(error)
+      });
+    }
   }
+
+  onEditContent(id){
+    this.authService.editContent(id).subscribe(res =>{
+      this.ngOnInit();
+    },(error)=> {
+      console.log(error)
+    });
   }
 }

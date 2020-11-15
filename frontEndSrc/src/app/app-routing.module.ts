@@ -17,7 +17,9 @@ const routes: Routes = [
   {path:'users/dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'register', component:RegisterComponent},
   {path:'bookmark/add', component:BookmarkComponent, canActivate:[AuthGuard]},
-  {path:'content/add', component:ContentComponent, canActivate:[AuthGuard]}
+  {path:'content/add', component:ContentComponent, canActivate:[AuthGuard]},
+  {path:'bookmark/add/:id', component:BookmarkComponent, canActivate:[AuthGuard]},
+  {path:'content/add/:id', component:ContentComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
