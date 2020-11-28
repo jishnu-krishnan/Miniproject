@@ -32,7 +32,7 @@ profile :String;
      });
 
      this.authService.showDashboard(user.id).subscribe(res => {
-      console.log(res)
+      //console.log(res)
       this.bookmark=res
       //console.log(this.bookmark)
     },(error)=> {
@@ -40,6 +40,7 @@ profile :String;
     });
 
     this.authService.showContent(user.id).subscribe(res =>{
+      console.log(res)
       this.content=res
     },(error)=>{
       console.log(error)
@@ -50,21 +51,32 @@ profile :String;
     //console.log(id)
     if(window.confirm('Are you sure?')){
       this.authService.deletebookmark(id).subscribe(res => {
-      console.log(res)
+      //console.log(res)
       this.ngOnInit();
       },(error)=>{
         console.log(error)
       });
     }
   }
+  onRequest(id){
+    if(window.confirm('Are you Sure?')){
+      const up={
+        status:'pending'
+      }
+      this.authService.requestPublish(id,JSON.stringify(up)).subscribe(res =>{
+        console.log(res)
+        this.router.navigateByUrl('/users/dashboard')
+      });
+    }
+  }
 
-  onEditBookmark(id){
+  /*onEditBookmark(id){
      this.authService.showBookmark(id).subscribe(res => {
      // this.ngOnInit();
     },(error)=>{
       console.log(error)
     }); 
-  }
+  }*/
 
   onDeleteContent(id){
     if(window.confirm('Are you sure?')){
@@ -77,11 +89,13 @@ profile :String;
     }
   }
 
-  onEditContent(id){
+  /*onEditContent(id){
     this.authService.editContent(id).subscribe(res =>{
       this.ngOnInit();
     },(error)=> {
       console.log(error)
     });
-  }
+  }*/
+
+  
 }

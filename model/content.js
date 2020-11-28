@@ -37,6 +37,11 @@ module.exports.getContentByUser = function(id, callback){
   Content.find(query,callback);
 }
 
+//show content in edit form 
+module.exports.showContent=function(id,callback){
+  const query = {_id:id}
+  Content.findById(query,callback)
+}
 
 //delete user content
 module.exports.deleteContent = function(id ,callback){

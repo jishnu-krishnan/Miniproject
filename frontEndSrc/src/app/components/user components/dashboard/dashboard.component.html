@@ -31,17 +31,25 @@
 <h4 class="center">Contents<hr width="150px"></h4>
 <div class="container">
   <div class="row">
-      <div class="card col s12 m6 l6" *ngFor="let con of content">
-        <div class="card-image" >
-          <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
-            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
-        </div>
-        <div class="card-content" >  
-          
-          <h4>{{con.title}} 
-          <a class="btn-floating blue" [routerLink]="['/content/edit']"><i class="material-icons">edit</i></a>
-          </h4>
-          <p>{{con.body}}</p>
+      <div class="col s12 m6 l6" *ngFor="let con of content">
+        <div class="card">
+          <div class="card-image" >
+            <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
+              <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
+          </div>
+          <div class="card-content" >  
+            
+            <h4>{{con.title}} 
+            <a class="btn-floating blue" [routerLink]="['/content/add',con._id]"><i class="material-icons">edit</i></a>
+            </h4>
+            <p>{{con.body}}
+            <a [routerLink]="['/content/view',con._id]">View More.....</a>
+            </p>
+            <br>
+            <div class="center">          
+              <a class="btn blue" (click)="onRequest(con._id)">Request</a>
+            </div>
+          </div>
         </div>
       </div>
   </div>

@@ -4,7 +4,7 @@ const router = express.Router();
 //const Bookmark = require('../model/bookmark');
 const localStorage = require('node-localstorage');
 const bookmark = require('../model/bookmark');
-
+const UrlMetadata= require('url-metadata')
 
 //localStorage = new LocalStorage('./scratch')
 
@@ -38,6 +38,24 @@ router.post('/add', async (req, res, next) => {
         }
     });
 });
+
+// @desc get description of site
+// @route PUT /bookmark/get
+router.put('/get',(req,res,next)=>{
+    console.log(req.body.link,'jm')
+const li=req.body.link
+    //https://beebom.com/best-bookmark-managers/
+    UrlMetadata(li).then(
+        function (metadata) { // success handler
+          console.log(metadata)
+          return res.json(metadata)
+        },
+        function (error) { // failure handler
+          console.log(error)
+          //return res.json({success: false, msg:'No Meta description found'})
+
+        })
+})
 
 // @desc show bookmark in dashboard
 // @route GET /bookmark/dashboard/:id

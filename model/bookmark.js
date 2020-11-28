@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+
+
 const BookmarkSchema = new mongoose.Schema({
   link:{
       type: String,
@@ -55,6 +57,7 @@ module.exports.showBookmark=function(id,callback){
   const query = {_id:id}
   Bookmark.findById(query,callback)
 }
+
 
 // edit bookmark
 module.exports.editBookmark=function(id,bm,callback){

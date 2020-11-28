@@ -95,6 +95,13 @@ export class AuthService {
     return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
+  // show content in editing form
+  showContentByid(contentid){
+    let url= `${this.contentUri}/add/${contentid}`
+    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+    
+  }
+
   // Delete bookmark
   deletebookmark(bookmarkid){
     let url= `${this.bookmarkUri}/delete/${bookmarkid}`
@@ -116,19 +123,30 @@ export class AuthService {
     return this.http.put(url,bookmark,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
-  // show bookmark in edit form
+  // show description while paste link
+  getDes(link){
+    let url= `${this.bookmarkUri}/get`
+    return this.http.put(url,link, {headers:this.headers} ).pipe(catchError(this.errorMgmt))
+
+  }
 
 
   // Delete Content on user dashboard
-  deleteContent(contentid){5
+  deleteContent(contentid){
     let url= `${this.contentUri}/delete/${contentid}`
     return this.http.delete(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Edit content
-  editContent(contentid){
-    let url=`${this.contentUri}/edit/${contentid}`
-    return this.http.post(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  editContent(contentid,content){
+    let url=`${this.contentUri}/add/${contentid}`
+    return this.http.put(url,content,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // request to publish content
+  requestPublish(contentid,status){
+    let url=`${this.contentUri}/request/${contentid}`
+    return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Error handling 

@@ -30,6 +30,46 @@ router.post('/add', async(req, res, next)=> {
     });
 });
 
+ // @desc show content in editing form
+// @ route GET /content/add/:id
+router.get('/add/:id',(req,res,next)=>{
+    Content.showContent(req.params.id,(err,content)=>{
+        //if(err) throw err;
+        if (!content){
+            return res.json({ success:false,msg:'No content found'});
+        }else{
+            return res.json(content)
+        }
+    })
+}) 
+
+// @desc edit content in editing form
+// @ route PUT /content/add/:id
+router.put('/add/:id',(req,res,next)=>{
+    Content.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
+        if(error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+        }
+    })
+})
+
+
+// @desc Request to publish
+// @ route PUT /content/request/:id
+router.put('/request/:id',(req,res,next)=>{
+    Content.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
+        if (error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+
+        }
+    })
+})
 // @desc show content in dashboard
 // @route GET /content/dashboard/:id
 router.get('/dashboard/:id',(req,res,next)=> {
@@ -56,7 +96,7 @@ router.delete('/delete/:id',(req,res,next) => {
 
         if(err) throw err;
         if(!content){
-            return res.json({success:false, msg:'No content found'})
+            return res.json({success:false, msg:'No content found'});
         } else {
             return res.status(200).json(content)
         }

@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="title">
+                <input type="text" formControlName="title" value="{{content.title}}">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
                     *Title is required.
                 </div> 
@@ -48,9 +48,8 @@
         </div>
 
         <div class="row">
-            <input type="submit" value="Save" class="btn">
-            <!-- <button>Sign Up</button> -->
-            <a class="btn orange">Cancel</a>
+            <input type="submit" value="Save" class="btn blue">
+            <input type="reset" value="Cancel" class="btn orange">
         </div>
     </form>
 </div>

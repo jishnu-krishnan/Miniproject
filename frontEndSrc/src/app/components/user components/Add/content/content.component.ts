@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 
 @Component({
@@ -10,12 +10,15 @@ import { AuthService } from '../../../../services/auth.service';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
+  
+  id: String;
   title: String;
   status: String;
   body: String;
   submitted= false;
   contentForm: FormGroup;
 
+  content :any=[];
   //STATUS:any = ['Private', 'Public']
 
   public Editor = ClassicEditor;
@@ -23,7 +26,8 @@ export class ContentComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private authService : AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ){ this.mainForm(); }
 
   mainForm(){
@@ -38,6 +42,14 @@ export class ContentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id']
+    if(this.id!=undefined){
+      this.authService.showContentByid(this.id).subscribe(res=>{
+        this.content=res
+      },(error)=>{
+        console.log(error)
+      });
+    }
   }
 
   get myForm(){
@@ -58,6 +70,13 @@ export class ContentComponent implements OnInit {
  //console.log(JSON.stringify(cm))
  if(!this.contentForm.valid){
   return false;
+ } else if(this.id!=undefined){
+    if(window.confirm('Are you sure?')){
+      this.authService.editContent(this.id,JSON.stringify(cm)).subscribe(res=>{
+        console.log(res)
+        this.router.navigateByUrl('/users/dashboard')
+      });
+    }
  } else {
     this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{
     console.log(res)
