@@ -81,7 +81,23 @@ router.get('/dashboard/:id',(req,res,next)=> {
         if(!content){
             return res.json({success: false, msg:'No content found'})
         }else {
-            return res.json(content)
+            return res.status(200).json(content)
+        }
+    })
+    //res.json({user:req.user});
+    
+})
+
+// @desc show content in dashboard
+// @route GET /content/dashboard/:id
+router.get('/discover',(req,res,next)=> {
+    
+    Content.getPublicContent((err, content)=> {
+        if(err) throw err;
+        if(!content){
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.status(200).json(content)
         }
     })
     //res.json({user:req.user});

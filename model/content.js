@@ -22,6 +22,10 @@ const ContentSchema = new mongoose.Schema({
       createdAt: {
         type: Date,
         default: Date.now,
+      },
+      reason: {
+        type: String
+        
       }
 })
 
@@ -48,4 +52,15 @@ module.exports.deleteContent = function(id ,callback){
   
   const query = {_id: id}
   Content.findOneAndRemove(query,callback)
+}
+
+//show requested contents
+module.exports.showRequest = function(callback){
+  const query = {status: 'pending'}
+  Content.find(query,callback)
+}
+
+module.exports.getPublicContent = function(callback){
+  const query = {status: 'public'}
+  Content.find(query,callback)
 }

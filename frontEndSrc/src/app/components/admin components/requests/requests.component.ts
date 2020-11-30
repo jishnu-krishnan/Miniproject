@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-requests',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor() { }
+  content : any=[];
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+
+  ) { }
 
   ngOnInit(): void {
+    
+    this.authService.showRequest().subscribe(res => {
+      //console.log(res)
+      this.content=res
+    },(error)=>{
+      console.log(error)
+    })
   }
 
 }

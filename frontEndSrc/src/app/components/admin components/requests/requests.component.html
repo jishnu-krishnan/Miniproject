@@ -1,1 +1,44 @@
-<p>requests works!</p>
+<app-navbar></app-navbar>
+<!-- <app-plus-button></app-plus-button> -->
+<div class="container">
+    <div class="card">
+        <h6>Requests</h6>
+
+        <p>Here are new requests</p>
+        <!-- {{#if stories}} -->
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody >
+                <!-- {{#each stories}} -->
+                <tr *ngFor="let val of content"><!-- /stories/{{_id}} -->
+                    <td> <a [routerLink]="['/admin/view',val._id]">{{val.title}}</a> </td><!-- {{formatDate val.createdAt 'MMMM Do YYYY, h:mm:ss a'}} -->
+                    <td> {{ val.createdAt}} </td>
+                    <td> <span class="dash-status">{{val.body}}</span> </td>
+                    <td>
+                         <a href="" class="btn btn-float">
+                            <i class="fas fa-edit"></i>
+                        </a> 
+        <!-- action="/stories/{{_id}}" -->
+                        <form  method="POST" id="delete-form">
+                            <input type="hidden" name="_method" value="Reject">
+                            <button type="submit" class="btn red">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <!-- {{/each}} -->
+            </tbody>
+        </table>
+        <!-- {{else}}
+        <p>You have not created any stories</p>
+        {{/if}} -->
+    </div>
+</div>

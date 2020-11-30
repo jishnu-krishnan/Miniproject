@@ -12,6 +12,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class DashboardComponent implements OnInit {
 bookmark :any=[];
 content : any=[];
+status: String;
 profile :String;
   constructor(
     public fb: FormBuilder,
@@ -25,7 +26,8 @@ profile :String;
     const user= JSON.parse(localStorage.getItem('user'))
 
      this.authService.getProfile(user.id).subscribe(res =>{
-       this.profile=res.name
+      //console.log(res.name) 
+      this.profile=res.name
       // console.log(res.name)
      },(error)=>{
        console.log(error)
@@ -34,13 +36,14 @@ profile :String;
      this.authService.showDashboard(user.id).subscribe(res => {
       //console.log(res)
       this.bookmark=res
+      
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
     });
 
     this.authService.showContent(user.id).subscribe(res =>{
-      console.log(res)
+      //console.log(res)
       this.content=res
     },(error)=>{
       console.log(error)

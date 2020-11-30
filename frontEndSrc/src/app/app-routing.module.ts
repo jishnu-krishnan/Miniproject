@@ -9,7 +9,9 @@ import { BookmarkComponent } from './components/user components/Add/bookmark/boo
 import { ContentComponent } from './components/user components/Add/content/content.component';
 import { AccountComponent } from './components/user components/account/account.component';
 import { ViewContentComponent } from './components/user components/view-content/view-content.component';
-
+import { RequestsComponent } from './components/admin components/requests/requests.component';
+import { AdminViewComponent } from './components/admin components/admin-view/admin-view.component';
+import { DiscoverPageComponent } from './components/user components/discover-page/discover-page.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -18,6 +20,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'users/dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'users/account',component:AccountComponent, canActivate:[AuthGuard]},
+  {path:'users/discover',component:DiscoverPageComponent, canActivate:[AuthGuard]}, 
   {path:'register', component:RegisterComponent},
   {path:'bookmark/add', component:BookmarkComponent, canActivate:[AuthGuard]},
   {path:'content/add', component:ContentComponent, canActivate:[AuthGuard]},
@@ -25,6 +28,8 @@ const routes: Routes = [
   {path:'content/add/:id', component:ContentComponent, canActivate:[AuthGuard]},
   {path:'bookmark/get', component:BookmarkComponent, canActivate:[AuthGuard]},
   {path:'content/view/:id', component:ViewContentComponent, canActivate:[AuthGuard]},
+  {path:'admin/request', component:RequestsComponent, canActivate:[AuthGuard]},
+  {path:'admin/view/:id', component:AdminViewComponent, canActivate:[AuthGuard]},
 
 ];
 

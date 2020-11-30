@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   mainForm(){
@@ -44,7 +45,26 @@ export class LoginComponent implements OnInit {
     this.submitted =true;
     if(!this.loginForm.valid){
       return false;
-    }else {
+    } else if(this.loginForm.value.mail=='admin@gmail.com'){
+        console.log('admin login')
+        this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
+          console.log(res)
+          //console.log(res.user)
+          if(res.success){
+            console.log('logined')
+  
+            this.authService.storeUserToken(res.token, res.user);
+            
+            this.ngZone.run(() =>this.router.navigateByUrl('admin/request'))
+          } else{
+            this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
+            this.router.navigateByUrl('/login')
+  
+          }
+        },(error)=> {
+          console.log(error)
+        });
+    } else {
       this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
         console.log(res)
         //console.log(res.user)

@@ -5,6 +5,7 @@
       <ul class="right hide-on-med-and-down">
         <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/dashboard']">Dashboard</a></li>
         <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/account']">Account</a></li>
+        <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/discover']">Discover</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Home</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']">Login</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']">Register</a></li>

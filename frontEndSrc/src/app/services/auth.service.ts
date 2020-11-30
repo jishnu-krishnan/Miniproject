@@ -11,6 +11,8 @@ export class AuthService {
   authToken: any;
   user: any;
   helper = new JwtHelperService();
+  userr:any;
+  n:any;
 
  /*  private loggedIn: BehaviorSubject<boolean> =new BehaviorSubject<boolean>(false);
   get isLoggedIn(){
@@ -20,6 +22,7 @@ export class AuthService {
   baseUri:string = 'http://localhost:3000/users';
   bookmarkUri:String = 'http://localhost:3000/bookmark';
   contentUri:String = 'http://localhost:3000/content';
+  adminUri:String = 'http://localhost:3000/admin'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http:HttpClient) { }
@@ -60,7 +63,14 @@ export class AuthService {
   logout() {
     this.authToken= null;
     localStorage.clear();
+    
   }
+
+  /* // to check admin or user
+  adminOrNot():Observable<any>{
+    console.log(this.user)
+    return this.user
+  } */
 
   // Nav bar component hide
   loggedIn(){
@@ -93,6 +103,13 @@ export class AuthService {
   showContent(userid){
     let url= `${this.contentUri}/dashboard/${userid}`
     return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // Show public content
+  showPublicContent(){
+    let url= `${this.contentUri}/discover`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+
   }
 
   // show content in editing form
@@ -148,6 +165,26 @@ export class AuthService {
     let url=`${this.contentUri}/request/${contentid}`
     return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
+
+  // Request to seen in admin page
+  showRequest(){
+    let url= `${this.adminUri}/request`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+
+  }
+
+  // Admin approve the content to publish
+  approveRequest(contentid,status){
+    let url=`${this.adminUri}/approve/${contentid}`
+    return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  // Admin Reject the content to publish
+  rejectRequest(contentid,status){
+    let url=`${this.adminUri}/reject/${contentid}`
+    return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

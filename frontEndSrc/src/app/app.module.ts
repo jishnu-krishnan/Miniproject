@@ -24,9 +24,11 @@ import { BookmarkComponent } from './components/user components/Add/bookmark/boo
 import { ContentComponent } from './components/user components/Add/content/content.component';
 import { PlusButtonComponent } from './components/user components/plus-button/plus-button.component';
 import { AccountComponent } from './components/user components/account/account.component';
-import { CategoryComponent } from './components/admin components/category/category.component';
+//import { CategoryComponent } from './components/admin components/category/category.component';
 import { RequestsComponent } from './components/admin components/requests/requests.component';
 import { ViewContentComponent } from './components/user components/view-content/view-content.component';
+import { AdminViewComponent } from './components/admin components/admin-view/admin-view.component';
+import { DiscoverPageComponent } from './components/user components/discover-page/discover-page.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,11 @@ import { ViewContentComponent } from './components/user components/view-content/
     ContentComponent,
     PlusButtonComponent,
     AccountComponent,
-    CategoryComponent,
+    //CategoryComponent,
     RequestsComponent,
     ViewContentComponent,
+    AdminViewComponent,
+    DiscoverPageComponent,
     
   ],
   imports: [

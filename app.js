@@ -22,7 +22,7 @@ const app = express();
 const users = require('./routes/users');
 const bookmark =require('./routes/bookmark')
 const content = require('./routes/contents')
-
+const admin = require('./routes/admins')
 // CORS Middleware
 
 app.use(cors());
@@ -67,6 +67,8 @@ app.use(passport.session());
 app.use('/users', users)
 app.use('/bookmark',bookmark)
 app.use('/content',content)
+app.use('/admin',admin)
+
 // Index Route
 app.get('/',(req,res) => {
     res.send('invalid');
