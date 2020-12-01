@@ -112,6 +112,13 @@ export class AuthService {
 
   }
 
+  //show public bookmark
+  showPublicDashboard(){
+    let url= `${this.bookmarkUri}/discover`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+
+  }
+
   // show content in editing form
   showContentByid(contentid){
     let url= `${this.contentUri}/add/${contentid}`
@@ -184,6 +191,11 @@ export class AuthService {
     let url=`${this.adminUri}/reject/${contentid}`
     return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
+// Admin Reject the content to publish
+rejectBookmark(bookid,status){
+  let url=`${this.adminUri}/rejectbookmark/${bookid}`
+  return this.http.put(url,status,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+}
 
 
   // Error handling 

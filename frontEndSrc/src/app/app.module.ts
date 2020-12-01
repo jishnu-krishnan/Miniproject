@@ -23,12 +23,16 @@ import { AuthGuard } from './services/auth.guard';
 import { BookmarkComponent } from './components/user components/Add/bookmark/bookmark.component';
 import { ContentComponent } from './components/user components/Add/content/content.component';
 import { PlusButtonComponent } from './components/user components/plus-button/plus-button.component';
+import { PlusComponent } from './components/admin components/plus/plus.component';
 import { AccountComponent } from './components/user components/account/account.component';
 //import { CategoryComponent } from './components/admin components/category/category.component';
 import { RequestsComponent } from './components/admin components/requests/requests.component';
 import { ViewContentComponent } from './components/user components/view-content/view-content.component';
 import { AdminViewComponent } from './components/admin components/admin-view/admin-view.component';
 import { DiscoverPageComponent } from './components/user components/discover-page/discover-page.component';
+import { AdminDashboardComponent } from './components/admin components/admin-dashboard/admin-dashboard.component';
+import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
+import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
 
 @NgModule({
   declarations: [
@@ -42,12 +46,16 @@ import { DiscoverPageComponent } from './components/user components/discover-pag
     BookmarkComponent,
     ContentComponent,
     PlusButtonComponent,
+    PlusComponent,
     AccountComponent,
     //CategoryComponent,
     RequestsComponent,
     ViewContentComponent,
     AdminViewComponent,
     DiscoverPageComponent,
+    AdminDashboardComponent,
+    AdminBookmarkComponent,
+    AdminContentComponent,
     
   ],
   imports: [

@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import { Options } from 'url-metadata';
-//const urlMetadata= require('url-metadata')
 
-import { AuthService } from '../../../../services/auth.service';
-//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AuthService } from "../../../services/auth.service";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { __param } from 'tslib';
 
-
 @Component({
-  selector: 'app-bookmark',
-  templateUrl: './bookmark.component.html',
-  styleUrls: ['./bookmark.component.css']
+  selector: 'app-admin-bookmark',
+  templateUrl: './admin-bookmark.component.html',
+  styleUrls: ['./admin-bookmark.component.css']
 })
-export class BookmarkComponent implements OnInit {
+export class AdminBookmarkComponent implements OnInit {
 
   id: String;
   link: String;
@@ -27,17 +23,29 @@ export class BookmarkComponent implements OnInit {
 
   bookmark :any=[];
 
-  //STATUS:any = ['Private', 'Public']
-
   public Editor = ClassicEditor;
-  public data = '<p>tyuhi</p>';
-  constructor(
-    public fb: FormBuilder,
+  constructor(public fb: FormBuilder,
     private authService : AuthService,
     private router: Router,
     private route: ActivatedRoute,
     
   ) { this.mainForm(); }
+
+  mainForm(){
+    this.bookmarkForm = this.fb.group({
+      link: ['',[Validators.required]],
+      title: ['',[Validators.required]],
+      //status: ['',[Validators.required]],
+      status:['public'],
+      body: ['',[Validators.required]]
+    })
+  }
+
+
+  get myForm(){
+    return this.bookmarkForm.controls;
+  } 
+
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
@@ -52,31 +60,7 @@ export class BookmarkComponent implements OnInit {
       });
     }
   }
-  
-  mainForm(){
-    this.bookmarkForm = this.fb.group({
-      link: ['',[Validators.required]],
-      title: ['',[Validators.required]],
-      //status: ['',[Validators.required]],
-      status:['private'],
-      body: ['',[Validators.required]]
-    })
-  }
 
-   get myForm(){
-    return this.bookmarkForm.controls;
-  } 
-
-  /* getData(){
-    const l =this.bookmarkForm.value.link
-    //console.log(l)
-    this.authService.getDes(l).subscribe(res=>{
-      console.log(res)
-      this.router.navigateByUrl('/bookmark/add')
-    })
-  
-  }
- */
   onSubmit(){
     this.submitted= true;
     const b= this.bookmarkForm.value
@@ -101,7 +85,7 @@ export class BookmarkComponent implements OnInit {
         this.authService.editBookmark(this.id,JSON.stringify(bm)).subscribe(res=>{
           //if(res.success){
             console.log(res);
-            this.router.navigateByUrl('/users/dashboard')
+            this.router.navigateByUrl('/admin/dashboard')
           //} else {
               //console.log('Somethings wrong');
               //this.router.navigateByUrl('/bookmark/add/:id')
@@ -113,10 +97,10 @@ export class BookmarkComponent implements OnInit {
         //console.log(res)
         if(res.success){
           console.log('Successfully enter Bookmark');
-          this.router.navigateByUrl('/users/dashboard')
+          this.router.navigateByUrl('/admin/dashboard')
         }else{
           console.log('Somethings wrong');
-          this.router.navigateByUrl('/bookmark/add')
+          this.router.navigateByUrl('/admin/bookmark')
         }
       },(error)=> {
         console.log(error);
@@ -124,3 +108,4 @@ export class BookmarkComponent implements OnInit {
     } 
   }
 }
+

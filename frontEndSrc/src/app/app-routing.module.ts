@@ -12,6 +12,10 @@ import { ViewContentComponent } from './components/user components/view-content/
 import { RequestsComponent } from './components/admin components/requests/requests.component';
 import { AdminViewComponent } from './components/admin components/admin-view/admin-view.component';
 import { DiscoverPageComponent } from './components/user components/discover-page/discover-page.component';
+import { AdminDashboardComponent } from './components/admin components/admin-dashboard/admin-dashboard.component';
+import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
+import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
+
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -30,6 +34,9 @@ const routes: Routes = [
   {path:'content/view/:id', component:ViewContentComponent, canActivate:[AuthGuard]},
   {path:'admin/request', component:RequestsComponent, canActivate:[AuthGuard]},
   {path:'admin/view/:id', component:AdminViewComponent, canActivate:[AuthGuard]},
+  {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[AuthGuard]},
+  {path:'admin/content', component:AdminContentComponent, canActivate:[AuthGuard]},
+  {path:'admin/bookmark', component:AdminBookmarkComponent, canActivate:[AuthGuard]}
 
 ];
 

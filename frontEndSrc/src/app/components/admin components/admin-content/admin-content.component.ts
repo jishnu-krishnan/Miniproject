@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  selector: 'app-admin-content',
+  templateUrl: './admin-content.component.html',
+  styleUrls: ['./admin-content.component.css']
 })
-export class ContentComponent implements OnInit {
-  
+export class AdminContentComponent implements OnInit {
+
   id: String;
   title: String;
   status: String;
@@ -19,8 +19,6 @@ export class ContentComponent implements OnInit {
   contentForm: FormGroup;
 
   content :any=[];
-  //STATUS:any = ['Private', 'Public']
-
   public Editor = ClassicEditor;
 
   constructor(
@@ -35,7 +33,7 @@ export class ContentComponent implements OnInit {
       //link: ['',[Validators.required]],
       title: ['',[Validators.required]],
       //status: ['',[Validators.required]],
-      status:['private'],
+      status:['public'],
       body: ['',[Validators.required]]
     })
   }
@@ -50,7 +48,6 @@ export class ContentComponent implements OnInit {
         console.log(error)
       });
     }
-    
   }
 
   get myForm(){
@@ -75,7 +72,7 @@ export class ContentComponent implements OnInit {
     if(window.confirm('Are you sure?')){
       this.authService.editContent(this.id,JSON.stringify(cm)).subscribe(res=>{
         console.log(res)
-        this.router.navigateByUrl('/users/dashboard')
+        this.router.navigateByUrl('/admin/dashboard')
       });
     }
  } else {
@@ -83,10 +80,10 @@ export class ContentComponent implements OnInit {
     console.log(res)
     if(res.success){
         console.log('User Successfully Content');
-        this.router.navigateByUrl('/users/dashboard')
+        this.router.navigateByUrl('/admin/dashboard')
     } else {
         console.log('Somethings wrong');
-        this.router.navigateByUrl('/content/add')
+        this.router.navigateByUrl('/admin/content')
     }
    },(error)=> {
      console.log(error)
@@ -95,3 +92,4 @@ export class ContentComponent implements OnInit {
   }
 
 }
+

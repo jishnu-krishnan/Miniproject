@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   
             this.authService.storeUserToken(res.token, res.user);
             
-            this.ngZone.run(() =>this.router.navigateByUrl('admin/request'))
+            this.ngZone.run(() =>this.router.navigateByUrl('admin/dashboard'))
           } else{
             this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
             this.router.navigateByUrl('/login')

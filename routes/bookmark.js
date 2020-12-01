@@ -103,6 +103,23 @@ router.get('/add/:id',(req,res,next)=>{
     })
 })
 
+// @desc show bookmark in dashboard
+// @route GET /bookmark/discover/
+
+router.get('/discover',(req,res,next)=> {
+    
+    Bookmark.getPublicBookmark((err, bookmark)=> {
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.status(200).json(bookmark)
+        }
+    })
+    //res.json({user:req.user});
+    
+})
+
 // @desc edit bookmark
 // @route PUT /bookmark/add/:id
 router.put('/add/:id',(req,res,next)=>{
@@ -123,7 +140,7 @@ router.put('/add/:id',(req,res,next)=>{
             return res.json({success:true,msg:'successfully edited'})
         }
     })
-    
+
     /* Bookmark.editBookmark(req.params.id,newBookmark,(err,bookmark)=>{
         if(err) throw err;
         if(!bookmark){

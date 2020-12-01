@@ -9,6 +9,7 @@ import { AuthService } from "../../../services/auth.service";
 })
 export class DiscoverPageComponent implements OnInit {
   content : any=[];
+  bookmark : any=[];
   profile :String;
   constructor(
     private router: Router,
@@ -26,6 +27,15 @@ export class DiscoverPageComponent implements OnInit {
      },(error)=>{
        console.log(error)
      });
+
+     this.authService.showPublicDashboard().subscribe(res => {
+      this.bookmark=res
+      
+      //console.log(this.bookmark)
+    },(error)=> {
+      console.log(error)
+    });
+     
      
      this.authService.showPublicContent().subscribe(res => {
       this.content=res

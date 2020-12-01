@@ -89,7 +89,7 @@ router.get('/dashboard/:id',(req,res,next)=> {
 })
 
 // @desc show content in dashboard
-// @route GET /content/dashboard/:id
+// @route GET /content/discover/:id
 router.get('/discover',(req,res,next)=> {
     
     Content.getPublicContent((err, content)=> {

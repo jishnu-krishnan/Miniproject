@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Content = require('../model/content');
+const Bookmark = require('../model/bookmark');
 
 require('dotenv').config();
 
@@ -48,5 +49,20 @@ router.put('/reject/:id',(req,res,next)=>{
         }
     })
 })
+
+// @desc Reject to publish
+// @ route PUT /admin/rejectbookmark/:id
+router.put('/rejectbookmark/:id',(req,res,next)=>{
+    Bookmark.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
+        if (error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+
+        }
+    })
+})
+
 
 module.exports = router;

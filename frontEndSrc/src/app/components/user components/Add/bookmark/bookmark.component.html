@@ -79,7 +79,7 @@
             <label for="description">Description</label>
             <div class="input-field">
                 
-                <ckeditor [editor]="Editor" [data]="data" data-="gdgdd" formControlName="body" ></ckeditor>
+                <ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','alignment','|', 'numberedList', 'blockQuote','|','undo','redo' ] }" [editor]="Editor" formControlName="body" ></ckeditor>
             </div>
             
         </div>

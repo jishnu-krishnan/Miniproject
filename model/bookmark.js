@@ -64,3 +64,8 @@ module.exports.editBookmark=function(id,bm,callback){
   const query = {_id:id}
   Bookmark.findByIdAndUpdate(query,bm,callback)
 }
+
+module.exports.getPublicBookmark = function(callback){
+  const query = {status: 'public'}
+  Bookmark.find(query,callback)
+}
