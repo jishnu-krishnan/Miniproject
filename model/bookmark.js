@@ -69,3 +69,9 @@ module.exports.getPublicBookmark = function(callback){
   const query = {status: 'public'}
   Bookmark.find(query,callback)
 }
+
+module.exports.searchBookmark = function(id,title, callback){
+  const query = {title : title, user: id}
+  console.log(query)
+  Bookmark.find(query,callback)
+}

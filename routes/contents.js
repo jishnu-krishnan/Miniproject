@@ -38,7 +38,7 @@ router.get('/add/:id',(req,res,next)=>{
         if (!content){
             return res.json({ success:false,msg:'No content found'});
         }else{
-            return res.json(content)
+            return res.status(200).json(content)
         }
     })
 }) 
@@ -70,6 +70,9 @@ router.put('/request/:id',(req,res,next)=>{
         }
     })
 })
+
+
+
 // @desc show content in dashboard
 // @route GET /content/dashboard/:id
 router.get('/dashboard/:id',(req,res,next)=> {
@@ -119,4 +122,21 @@ router.delete('/delete/:id',(req,res,next) => {
     })
 });
 
+
+// @desc show search result
+// @route PUT /content/search
+router.put('/search',(req,res,next)=>{
+    //console.log(req.body)
+    const title=req.body.body;
+    //console.log(title)
+    Content.searchContent(title,(error,content)=>{
+        if(!content){
+            //console.log('hgbj')
+            return error
+        }else {
+            //console.log(content)
+            return res.status(200).json(content)
+        }
+    })
+})
 module.exports = router;

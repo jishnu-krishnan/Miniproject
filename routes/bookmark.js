@@ -57,6 +57,20 @@ const li=req.body.link
         })
 })
 
+// @desc show search bookmark
+// @route PUT /bookmark/search/:id
+router.put('/search/:id',(req,res,next)=>{
+    const title = req.body.body;
+    Bookmark.searchBookmark(req.params.id,title,(error,bookmark)=>{
+        if (!bookmark){
+            return error
+        }else {
+            return res.status(200).json(bookmark)
+        }
+    })
+
+})
+
 // @desc show bookmark in dashboard
 // @route GET /bookmark/dashboard/:id
 router.get('/dashboard/:id',(req,res,next)=> {

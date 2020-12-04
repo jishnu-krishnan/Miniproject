@@ -10,6 +10,7 @@ import { AuthService } from "../../../services/auth.service";
 export class DiscoverPageComponent implements OnInit {
   content : any=[];
   bookmark : any=[];
+  type:String;
   profile :String;
   constructor(
     private router: Router,
@@ -23,26 +24,56 @@ export class DiscoverPageComponent implements OnInit {
      this.authService.getProfile(user.id).subscribe(res =>{
       //console.log(res.name) 
       this.profile=res.name
+
       // console.log(res.name)
      },(error)=>{
        console.log(error)
      });
 
-     this.authService.showPublicDashboard().subscribe(res => {
+     /* this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
       
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
-    });
+    }); */
      
      
      this.authService.showPublicContent().subscribe(res => {
       this.content=res
+      this.type='Contents'
       },(error)=>{
       console.log(error)
       })
    }
+
+   onBookmark(){
+    //const user= JSON.parse(localStorage.getItem('user'))
+
+    this.authService.showPublicDashboard().subscribe(res => {
+      //console.log(res)
+      this.bookmark=res
+      this.type='Bookmark'
+      //console.log(this.bookmark)
+    },(error)=> {
+      console.log(error)
+    });
+    //this.ngOnInit()
+  }
+
+
+  onContent(){
+    //const user= JSON.parse(localStorage.getItem('user'))
+
+    this.authService.showPublicContent().subscribe(res =>{
+      console.log(res)
+      this.content=res
+      this.type='Contents'
+
+    },(error)=>{
+      console.log(error)
+    });
+  }
 
 }
   

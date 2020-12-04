@@ -3,6 +3,10 @@
 <app-plus-button></app-plus-button>
 
   <div class="container" >
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a [routerLink]="['/users/discover']" (click)='onBookmark()'>BookMark</a></li>
+      <li class="tab"><a [routerLink]="['/users/discover']" (click)='onContent()'>Content</a></li>
+    </ul>
     <h3>Welcome {{profile}}</h3>
     <p>Your bookmarks & contents is here,</p>
   </div>
@@ -28,10 +32,11 @@
     </div>
   </div> -->
 
-<h4 class="center">Contents<hr width="150px"></h4>
+<h4 class="center">Public {{type}}<hr width="235px"></h4>
 <div class="container">
+  
   <div class="row">
-      <div class="col s12 m6 l6" *ngFor="let con of content">
+      <div class="col s12 m6 l4" *ngFor="let con of content or let val of bookmark">
         <div class="card">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
@@ -42,7 +47,8 @@
             <h4>{{con.title}} 
 <!--             <a class="btn-floating blue" [routerLink]="['/content/add',con._id]"><i class="material-icons">edit</i></a>
  -->            </h4>
-            <p >{{con.body}}
+            <a target="_blank" href="{{val.link}}">{{val.link}}</a>
+            <p >{{(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)}}
             <a [routerLink]="['/content/view',con._id]">View More.....</a>
             </p>
             
@@ -53,7 +59,7 @@
 </div>
 
 
-<h4 class="center">Bookmarks<hr width="150px"></h4>
+<!-- <h4 class="center">Bookmarks<hr width="150px"></h4>
   <div class="container">
     <div class="row">
       <div class="col s12 m6 l6" *ngFor="let val of bookmark">
@@ -73,3 +79,4 @@
       </div>
     </div>
   </div> 
+ -->

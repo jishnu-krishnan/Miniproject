@@ -8,7 +8,7 @@
     <form [formGroup]="bookmarkForm" (submit)="onSubmit()" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="link" value="{{bookmark.link}}" (focusout)="getData()">
+                <input type="text" formControlName="link" value="{{bookmark.link}}">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.link.errors?.required">
                     *Link is required.
                 </div> 

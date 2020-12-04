@@ -1,7 +1,21 @@
 .toolbar{
     background-color: #4441fff6;
-    
+    height: 65px;
 }
 .brand-logo{
     padding-left: 1em;
 }
+
+/* .tabs.tabs-transparent .tab a, .tabs.tabs-transparent .tab.disabled a, .tabs.tabs-transparent .tab.disabled a:hover {
+    color:white;
+} */
+
+/* .nav-content{
+    width: 200px;
+    margin-left: 180px;
+}
+.tabs .tabs-transparent{
+    
+    margin-left: 180px;
+
+} */

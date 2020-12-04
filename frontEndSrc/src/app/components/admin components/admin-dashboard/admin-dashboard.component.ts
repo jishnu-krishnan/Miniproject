@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
+import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MyDialogComponent } from '../my-dialog/my-dialog.component';
+
+export interface DialogData {
+  reason: string;
+  
+}
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -11,10 +18,15 @@ export class AdminDashboardComponent implements OnInit {
 
   bookmark: any=[];
   content : any=[];
+  type: String;
   profile :String;
+  reason:String;
+  data : any
   constructor(
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
 
@@ -30,19 +42,46 @@ export class AdminDashboardComponent implements OnInit {
 
      this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
-      
+      this.type='Bookmark'
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
     });
      
-     this.authService.showPublicContent().subscribe(res => {
+     /* this.authService.showPublicContent().subscribe(res => {
       this.content=res
       },(error)=>{
       console.log(error)
-      })
+      }) */
   }
 
+  onBookmark(){
+    //const user= JSON.parse(localStorage.getItem('user'))
+
+    this.authService.showPublicDashboard().subscribe(res => {
+      //console.log(res)
+      this.bookmark=res
+      this.type='Bookmark'
+      //console.log(this.bookmark)
+    },(error)=> {
+      console.log(error)
+    });
+    //this.ngOnInit()
+  }
+
+
+  onContent(){
+    //const user= JSON.parse(localStorage.getItem('user'))
+
+    this.authService.showPublicContent().subscribe(res =>{
+      console.log(res)
+      this.content=res
+      this.type='Contents'
+
+    },(error)=>{
+      console.log(error)
+    });
+  }
 
   onDeleteBookmark(id){
     if(window.confirm('Are you sure?')){
@@ -58,17 +97,29 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  onDeleteContent(id){
-    if(window.confirm('Are you sure?')){
+  onDeleteContent(id):void{
+    const dialogRef = this.dialog.open(MyDialogComponent, {
+      width: '250px',
+      data: { reason: this.reason}
+      //console.log('The dialog was closed');
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+      this.reason = result;
+      console.log(this.reason)
       const up={
         status:'private',
-        reason:'already published'
+        reason:this.reason
   
       }
       this.authService.rejectRequest(id,JSON.stringify(up)).subscribe(res => {
+        this.ngOnInit()
         this.router.navigateByUrl('/admin/dashboard')
-      });
-    }
-  }
 
+      });
+    
+    });
+  }
 }

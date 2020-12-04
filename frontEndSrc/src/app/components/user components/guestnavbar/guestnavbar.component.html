@@ -1,16 +1,58 @@
 <div class="navbar-fixed">
   <nav class="toolbar">
-    <div class="nav-wrapper">
+    <div class="nav-wrapper col s4">
       <a href="/" class="brand-logo"><i class="large material-icons">bookmark_border</i>BookMark</a>
+      <!-- <button (click)="onToggleFab()" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></button>
+      <div>
+      
+        <button *ngFor="let btn of buttons" class="{{btn.class}}">
+          
+         <a [routerLink]="[btn.route]"><i class="material-icons">{{btn.icon}}</i></a>
+        </button>        
+      </div> -->
       <ul class="right hide-on-med-and-down">
+        <!-- <div class="row">
+          <div class="input-field">
+              <input type="text" formControlName="title" >
+              <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
+                  *Title is required.
+              </div> 
+              <label for="title">Title</label>
+          </div>
+      </div> -->
+      <!-- <li>   
+
+        <div class="center row">
+           <div class="col s12 " >
+            <form [formGroup]="searchForm" (submit)="onSubmit()">
+             <div class="row" id="topbarsearch">
+               <div class="input-field col s6 s12 red-text">
+                 <i class="white-text material-icons prefix">search</i>
+                 <input type="text" formControlName="search" placeholder="search" id="autocomplete-input" class="autocomplete white-text" >
+                 </div>
+              </div>
+            </form>
+           </div>
+         </div>          
+      </li>  -->
+      
         <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/dashboard']">Dashboard</a></li>
         <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/account']">Account</a></li>
         <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/users/discover']">Discover</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Home</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']">Login</a></li>
         <li *ngIf="authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']">Register</a></li>
-        <li *ngIf="!authService.loggedIn();"><a (click)='onLogoutClick()' [routerLink]="['/login']">Logout</a></li>
+        <li *ngIf="!authService.loggedIn();"><a (click)='onLogoutClick()'>Logout</a></li>
       </ul>
+      <!-- <ul class="tabs tabs-transparent">
+        <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="tab"><a class="active" (click)='onBookmark()'>BookMark</a></li>
+        <li *ngIf="!authService.loggedIn();" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="tab"><a class="active" (click)='onContent()'>Content</a></li>
+      </ul> -->
+      
     </div>
   </nav>
+  <!-- <ul class="sidenav" id="mobile-demo" *ngFor="let btn of buttons">
+    <li><a [routerLink]="[btn.route]"><i class="material-icons">{{btn.icon}}</i></a>
+    </li>
+  </ul> -->
 </div> 

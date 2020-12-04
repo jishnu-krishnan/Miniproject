@@ -6,6 +6,9 @@ import { MatButtonModule  } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +36,8 @@ import { DiscoverPageComponent } from './components/user components/discover-pag
 import { AdminDashboardComponent } from './components/admin components/admin-dashboard/admin-dashboard.component';
 import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
 import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
-
+import { ReasonComponent } from './components/admin components/reason/reason.component';
+import { MyDialogComponent } from './components/admin components/my-dialog/my-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +60,8 @@ import { AdminContentComponent } from './components/admin components/admin-conte
     AdminDashboardComponent,
     AdminBookmarkComponent,
     AdminContentComponent,
+    ReasonComponent,
+    MyDialogComponent,
     
   ],
   imports: [
@@ -68,7 +74,13 @@ import { AdminContentComponent } from './components/admin components/admin-conte
     FlashMessagesModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
+  entryComponents:[
+    MyDialogComponent
   ],
   providers: [ValidateService,AuthService,FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]

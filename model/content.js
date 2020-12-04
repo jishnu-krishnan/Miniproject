@@ -42,9 +42,9 @@ module.exports.getContentByUser = function(id, callback){
 }
 
 //show content in edit form 
-module.exports.showContent=function(id,callback){
-  const query = {_id:id}
-  Content.findById(query,callback)
+module.exports.showContent = function(id,callback){
+  //const query = {_id:id}
+  Content.findById({_id:id},callback)
 }
 
 //delete user content
@@ -62,5 +62,11 @@ module.exports.showRequest = function(callback){
 
 module.exports.getPublicContent = function(callback){
   const query = {status: 'public'}
+  Content.find(query,callback)
+}
+
+module.exports.searchContent = function(title,callback){
+  const query = {title: title}
+  //console.log(query)
   Content.find(query,callback)
 }

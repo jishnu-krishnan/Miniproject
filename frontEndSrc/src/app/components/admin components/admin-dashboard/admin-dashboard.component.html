@@ -1,25 +1,27 @@
 <app-navbar></app-navbar>
 <app-plus></app-plus>
   <div class="container" >
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a [routerLink]="['/admin/dashboard']" (click)='onBookmark()'>BookMark</a></li>
+      <li class="tab"><a [routerLink]="['/admin/dashboard']" (click)='onContent()'>Content</a></li>
+    </ul>
     <h3>Welcome {{profile}}</h3>
     <p>Your bookmarks & contents is here,</p>
   </div>
 
-<h4 class="center">Contents<hr width="150px"></h4>
+<h4 class="center">{{type}}<hr width="150px"></h4>
 <div class="container">
   <div class="row">
-      <div class="col s12 m6 l6" *ngFor="let con of content">
+      <div class="col s12 m6 l4" *ngFor="let con of content or let val of bookmark">
         <div class="card">
-          <div class="card-image" >
-            <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
-              <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
+          <div class="card-image" > 
+            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(val._id)"><i class="material-icons">delete</i></a>
           </div>
-          <div class="card-content" >  
-            
-            <h4>{{con.title}} 
-<!--             <a class="btn-floating blue" [routerLink]="['/content/add',con._id]"><i class="material-icons">edit</i></a>
- -->            </h4>
-            <p >{{con.body}}
+          <div class="card-content" >              
+            <h4>{{con.title}}</h4>
+            <a target="_blank" href="{{val.link}}">{{val.link}}</a>
+
+            <p >{{(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)}}
             <a [routerLink]="['/content/view',con._id]">View More.....</a>
             </p>
             
@@ -30,7 +32,7 @@
 </div>
 
 
-<h4 class="center">Bookmarks<hr width="150px"></h4>
+<!-- <h4 class="center">Bookmarks<hr width="150px"></h4>
   <div class="container">
     <div class="row">
       <div class="col s12 m6 l6" *ngFor="let val of bookmark">
@@ -50,3 +52,4 @@
       </div>
     </div>
   </div> 
+ -->

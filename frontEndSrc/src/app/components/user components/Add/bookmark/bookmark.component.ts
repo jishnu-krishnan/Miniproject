@@ -44,7 +44,11 @@ export class BookmarkComponent implements OnInit {
     //console.log(this.id)
     if(this.id!=undefined){
       this.authService.showBookmark(this.id).subscribe(res =>{
-        this.bookmark=res
+        
+        this.bookmarkForm.controls['title'].setValue(res.title)
+        this.bookmarkForm.controls['body'].setValue(res.body)
+        this.bookmarkForm.controls['link'].setValue(res.link)
+        //this.bookmark=res
         //this.Editor=res
         //console.log('ifg',this.Editor)
       },(error)=>{
