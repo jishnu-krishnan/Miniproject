@@ -135,8 +135,9 @@ export class AuthService {
 
   // Search Content
   searchContent(content):Observable<any>{
-    const user= JSON.parse(localStorage.getItem('user'))
-    let url = `${this.contentUri}/search/${user.id}`
+    //const user= JSON.parse(localStorage.getItem('user'))
+    console.log(content)
+    let url = `${this.contentUri}/search`
     return this.http.put(url,content,{headers:this.headers}).pipe(catchError(this.errorMgmt))
 
   }

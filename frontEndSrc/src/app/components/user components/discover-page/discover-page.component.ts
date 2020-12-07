@@ -12,6 +12,8 @@ export class DiscoverPageComponent implements OnInit {
   bookmark : any=[];
   type:String;
   profile :String;
+  searchText:String;
+
   constructor(
     private router: Router,
     private authService: AuthService
@@ -30,17 +32,17 @@ export class DiscoverPageComponent implements OnInit {
        console.log(error)
      });
 
-     /* this.authService.showPublicDashboard().subscribe(res => {
+      this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
       
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
-    }); */
+    }); 
      
      
      this.authService.showPublicContent().subscribe(res => {
-      this.content=res
+      this.bookmark=res
       this.type='Contents'
       },(error)=>{
       console.log(error)
@@ -67,7 +69,7 @@ export class DiscoverPageComponent implements OnInit {
 
     this.authService.showPublicContent().subscribe(res =>{
       console.log(res)
-      this.content=res
+      this.bookmark=res
       this.type='Contents'
 
     },(error)=>{

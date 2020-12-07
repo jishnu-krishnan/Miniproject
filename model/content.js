@@ -38,6 +38,7 @@ module.exports.addContent = function(newContent, callback){
 // show dashboard content
 module.exports.getContentByUser = function(id, callback){
   const query = {user:id}
+  console.log(query)
   Content.find(query,callback);
 }
 
@@ -65,8 +66,8 @@ module.exports.getPublicContent = function(callback){
   Content.find(query,callback)
 }
 
-module.exports.searchContent = function(title,callback){
+/* module.exports.searchContent = function(title,callback){
   const query = {title: title}
   //console.log(query)
   Content.find(query,callback)
-}
+} */

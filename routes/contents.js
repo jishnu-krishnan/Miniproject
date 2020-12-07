@@ -125,7 +125,7 @@ router.delete('/delete/:id',(req,res,next) => {
 
 // @desc show search result
 // @route PUT /content/search
-router.put('/search',(req,res,next)=>{
+/* router.put('/search',(req,res,next)=>{
     //console.log(req.body)
     const title=req.body.body;
     //console.log(title)
@@ -137,6 +137,22 @@ router.put('/search',(req,res,next)=>{
             //console.log(content)
             return res.status(200).json(content)
         }
+    })
+}) */
+
+router.put('/search',(req,res,next)=>{
+    //console.log(req.body)
+    const title=req.body.body;
+    const user=req.body.user;
+    //console.log(title)
+    Content.find({body : {"$regex": new RegExp(title)}},{_id:0,_v:0},(error,content)=>{
+        if(!content){
+            console.log('hgbj')
+            return error
+        }else {
+            
+            return res.status(200).json(content)
+        } 
     })
 })
 module.exports = router;

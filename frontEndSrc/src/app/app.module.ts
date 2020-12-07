@@ -9,6 +9,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -77,7 +78,8 @@ import { MyDialogComponent } from './components/admin components/my-dialog/my-di
     MatSelectModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    Ng2SearchPipeModule
   ],
   entryComponents:[
     MyDialogComponent

@@ -1,19 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
 import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { MyDialogComponent } from '../my-dialog/my-dialog.component';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 export interface DialogData {
   reason: string;
-  
+  searchText:String;
 }
+
+/* @Pipe({
+  name:'stiphtml'
+}) */
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
+
+/* export class StripHtmlPipe implements PipeTransform {
+  transform(value: string): any {
+      return value.replace(/<.*?>/g, ''); // replace tags
+  }
+} */
+
 export class AdminDashboardComponent implements OnInit {
 
   bookmark: any=[];
@@ -43,7 +55,7 @@ export class AdminDashboardComponent implements OnInit {
      this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
       this.type='Bookmark'
-      //console.log(this.bookmark)
+      console.log(res)
     },(error)=> {
       console.log(error)
     });
@@ -75,7 +87,7 @@ export class AdminDashboardComponent implements OnInit {
 
     this.authService.showPublicContent().subscribe(res =>{
       console.log(res)
-      this.content=res
+      this.bookmark=res
       this.type='Contents'
 
     },(error)=>{

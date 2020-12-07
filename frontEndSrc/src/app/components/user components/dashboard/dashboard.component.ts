@@ -16,6 +16,7 @@ submitted= false;
 searchForm:FormGroup;
 status: String;
 profile :String;
+searchText:String;
 type:String;
   constructor(
     public fb: FormBuilder,
@@ -51,7 +52,7 @@ type:String;
       console.log(error)
     }); 
 
-    /* this.authService.showContent(user.id).subscribe(res =>{
+     /* this.authService.showContent(user.id).subscribe(res =>{
       console.log(res)
       this.content=res
     },(error)=>{
@@ -78,7 +79,7 @@ type:String;
 
     this.authService.showContent(user.id).subscribe(res =>{
       console.log(res)
-      this.content=res
+      this.bookmark=res
       this.type='Contents'
 
     },(error)=>{
@@ -140,26 +141,26 @@ type:String;
     return this.searchForm.controls;
   }
   
-  onSubmit(){
+  /* onSubmit(){
     //console.log('sfsdf')
     this.submitted=true;
     if(!this.searchForm.valid){
       return false
     }else{
-      //console.log(this.searchForm.value)
+      console.log(this.searchForm.value)
 
       this.authService.searchContent(this.searchForm.value).subscribe(res=>{
         console.log(res)
         this.content=res
         this.type='Contents'
         this.router.navigateByUrl('/users/dashboard')
-      });
-      this.authService.searchBookmark(this.searchForm.value).subscribe(res=>{
+      });*/
+      /* this.authService.searchBookmark(this.searchForm.value).subscribe(res=>{
         this.bookmark=res
         this.type='Bookmark'
         this.router.navigateByUrl('/users/dashboard')
-      })
+      }) */
 
-    }
-  }
+   // }
+  //} 
 }
