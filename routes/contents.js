@@ -1,4 +1,5 @@
 const express = require('express');
+const Bookmark = require('../model/bookmark');
 const content = require('../model/content');
 const Content = require('../model/content');
 const router = express.Router();
@@ -36,12 +37,19 @@ router.get('/add/:id',(req,res,next)=>{
     Content.showContent(req.params.id,(err,content)=>{
         //if(err) throw err;
         if (!content){
-            return res.json({ success:false,msg:'No content found'});
+            Bookmark.findById(req.params.id,(err,bookmark)=>{
+                if(!bookmark){
+                    return res.json({ success:false,msg:'No content found'});
+                }else{
+                    return res.status(200).json(bookmark)
+                }
+            })
         }else{
             return res.status(200).json(content)
         }
     })
 }) 
+
 
 // @desc edit content in editing form
 // @ route PUT /content/add/:id

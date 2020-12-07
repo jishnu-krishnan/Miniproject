@@ -48,6 +48,12 @@ module.exports.showContent = function(id,callback){
   Content.findById({_id:id},callback)
 }
 
+/* //show bookmark in edit form 
+module.exports.showBookmark=function(id,callback){
+  const query = {_id:id}
+  Bookmark.findById(query,callback)
+} */
+
 //delete user content
 module.exports.deleteContent = function(id ,callback){
   

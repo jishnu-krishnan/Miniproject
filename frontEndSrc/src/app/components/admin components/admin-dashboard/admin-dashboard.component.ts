@@ -95,7 +95,7 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  onDeleteBookmark(id){
+ /*  onDeleteBookmark(id){
     if(window.confirm('Are you sure?')){
       const up={
         status:'private',
@@ -107,7 +107,7 @@ export class AdminDashboardComponent implements OnInit {
         this.router.navigateByUrl('/admin/dashboard')
       })
     }
-  }
+  } */
 
   onDeleteContent(id):void{
     const dialogRef = this.dialog.open(MyDialogComponent, {

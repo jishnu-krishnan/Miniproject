@@ -39,6 +39,20 @@ router.post('/add', async (req, res, next) => {
     });
 });
 
+/* 
+// @desc show Bookmark in editing form
+// @ route GET /bookmark/add/:id
+router.get('/add/:id',(req,res,next)=>{
+    Bookmark.showBookmark(req.params.id,(err,bookmark)=>{
+        //if(err) throw err;
+        if (!bookmark){
+            return res.json({ success:false,msg:'No content found'});
+        }else{
+            return res.status(200).json(bookmark)
+        }
+    })
+}) 
+ */
 // @desc get description of site
 // @route PUT /bookmark/get
 router.put('/get',(req,res,next)=>{

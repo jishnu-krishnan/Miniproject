@@ -52,11 +52,11 @@ module.exports.deleteBookmark = function(id ,callback){
   Bookmark.findOneAndRemove(query,callback)
 }
 
-//show bookmark in edit form 
+/* //show bookmark in edit form 
 module.exports.showBookmark=function(id,callback){
   const query = {_id:id}
   Bookmark.findById(query,callback)
-}
+} */
 
 
 // edit bookmark

@@ -39,6 +39,13 @@ export class AdminViewComponent implements OnInit {
       },(error)=>{
         console.log(error)
       });
+      this.authService.showBookmarkByid(this.id).subscribe(res=>{
+        console.log(res)
+        this.content=res
+        
+      },(error)=>{
+        console.log(error)
+      });
     }
   }
 

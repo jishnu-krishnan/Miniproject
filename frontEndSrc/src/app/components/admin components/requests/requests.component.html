@@ -22,16 +22,18 @@
                     <td> {{ val.createdAt}} </td>
                     <td> <span class="dash-status">{{val.body}}</span> </td>
                     <td>
-                         <a href="" class="btn btn-float">
+                         <!-- <a href="" class="btn btn-float">
                             <i class="fas fa-print"></i>
-                        </a> 
-        <!-- action="/stories/{{_id}}" -->
+                        </a>
                         <form  method="POST" id="delete-form">
                             <input type="hidden" name="_method" value="Reject">
                             <button type="submit" class="btn red">
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </form>
+                        </form> -->
+
+                        <a class="btn blue right" (click)="onApprove(val._id)">Approve</a>
+                        <a class="btn red right" (click)="onReject(val._id)">Reject</a>
                     </td>
                 </tr>
                 <!-- {{/each}} -->

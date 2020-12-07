@@ -132,6 +132,13 @@ export class AuthService {
     return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
     
   }
+  // show content in editing form
+  showBookmarkByid(bookmarkid):Observable<any>{
+      
+    let url= `${this.bookmarkUri}/add/${bookmarkid}`
+    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+    
+  }
 
   // Search Content
   searchContent(content):Observable<any>{
