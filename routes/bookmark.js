@@ -4,7 +4,7 @@ const router = express.Router();
 //const Bookmark = require('../model/bookmark');
 const localStorage = require('node-localstorage');
 const bookmark = require('../model/bookmark');
-
+const UrlMetadata= require('url-metadata')
 
 //localStorage = new LocalStorage('./scratch')
 
@@ -38,6 +38,52 @@ router.post('/add', async (req, res, next) => {
         }
     });
 });
+
+/* 
+// @desc show Bookmark in editing form
+// @ route GET /bookmark/add/:id
+router.get('/add/:id',(req,res,next)=>{
+    Bookmark.showBookmark(req.params.id,(err,bookmark)=>{
+        //if(err) throw err;
+        if (!bookmark){
+            return res.json({ success:false,msg:'No content found'});
+        }else{
+            return res.status(200).json(bookmark)
+        }
+    })
+}) 
+ */
+// @desc get description of site
+// @route PUT /bookmark/get
+router.put('/get',(req,res,next)=>{
+    console.log(req.body.link,'jm')
+const li=req.body.link
+    //https://beebom.com/best-bookmark-managers/
+    UrlMetadata(li).then(
+        function (metadata) { // success handler
+          console.log(metadata)
+          return res.json(metadata)
+        },
+        function (error) { // failure handler
+          console.log(error)
+          //return res.json({success: false, msg:'No Meta description found'})
+
+        })
+})
+
+// @desc show search bookmark
+// @route PUT /bookmark/search/:id
+router.put('/search/:id',(req,res,next)=>{
+    const title = req.body.body;
+    Bookmark.searchBookmark(req.params.id,title,(error,bookmark)=>{
+        if (!bookmark){
+            return error
+        }else {
+            return res.status(200).json(bookmark)
+        }
+    })
+
+})
 
 // @desc show bookmark in dashboard
 // @route GET /bookmark/dashboard/:id
@@ -85,6 +131,23 @@ router.get('/add/:id',(req,res,next)=>{
     })
 })
 
+// @desc show bookmark in dashboard
+// @route GET /bookmark/discover/
+
+router.get('/discover',(req,res,next)=> {
+    
+    Bookmark.getPublicBookmark((err, bookmark)=> {
+        if(err) throw err;
+        if(!bookmark){
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.status(200).json(bookmark)
+        }
+    })
+    //res.json({user:req.user});
+    
+})
+
 // @desc edit bookmark
 // @route PUT /bookmark/add/:id
 router.put('/add/:id',(req,res,next)=>{
@@ -105,7 +168,7 @@ router.put('/add/:id',(req,res,next)=>{
             return res.json({success:true,msg:'successfully edited'})
         }
     })
-    
+
     /* Bookmark.editBookmark(req.params.id,newBookmark,(err,bookmark)=>{
         if(err) throw err;
         if(!bookmark){

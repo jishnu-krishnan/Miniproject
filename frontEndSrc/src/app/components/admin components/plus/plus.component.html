@@ -1,0 +1,13 @@
+<div class="fixed-action-btn">
+    <button class="btn-floating btn-large waves-effect waves-light blue pulse click-to-toggle"
+            (click)="onToggleFab()">
+    <i class="fas fa-plus" > </i>
+    </button>
+    <div>
+      
+      <button *ngFor="let btn of buttons" class="{{btn.class}}">
+        
+       <a [routerLink]="[btn.route]"><i class="material-icons">{{btn.icon}}</i></a>
+      </button>     
+    </div>
+</div>

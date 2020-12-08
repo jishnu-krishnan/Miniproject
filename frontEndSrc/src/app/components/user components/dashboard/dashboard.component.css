@@ -1,3 +1,17 @@
 .card{
     margin-top: 2em;
+    height: 23em;
+}
+.container{
+    margin-top: 20px;
+}
+
+.tabs.tabs-transparent .tab a, .tabs.tabs-transparent .tab.disabled a, .tabs.tabs-transparent .tab.disabled a:hover{
+    color: blue;
+}
+.sp{
+    margin-right: 7rem;
+}
+.row .col.s12{
+    margin-top: 0px;
 }

@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   password: String;
   submitted = false;
   userForm : FormGroup;
-
+  found: String;
   constructor(
     public fb: FormBuilder,
     private validateService : ValidateService, 
@@ -55,7 +55,29 @@ export class RegisterComponent implements OnInit {
       return false;
       
     }else{
-      this.authService.registerUser(JSON.stringify(this.userForm.value)).subscribe(res => {
+      this.authService.checkRegistered(JSON.stringify(this.userForm.value)).subscribe(res=>{
+        if(res.success){
+          //console.log('New User')
+          this.authService.registerUser(JSON.stringify(this.userForm.value)).subscribe(res=>{
+            if(res.success){
+              this.authService.storeUserToken(res.token, res.user);
+              console.log('User Successfully Registered');
+              this.router.navigateByUrl('/users/dashboard')
+            }else{
+              console.log('Somethings wrong');
+              this.router.navigateByUrl('/register')
+            }
+          },(error)=>{
+            console.log(error)
+          });
+        }else{
+          this.found='*Mail id already registered'
+          console.log('Already registed')
+        }
+      });
+
+
+      /* this.authService.registerUser(JSON.stringify(this.userForm.value)).subscribe(res => {
         console.log(res)
         
         if(res.success){
@@ -69,9 +91,12 @@ export class RegisterComponent implements OnInit {
         }
       },(error)=> {
         console.log(error);
-      });
+      });*/
     }
+  
   }
+
+}
   /*onRegisterSubmit(){
     const user={
       name: this.name,
@@ -103,4 +128,4 @@ export class RegisterComponent implements OnInit {
       });
     }
   */
-}
+

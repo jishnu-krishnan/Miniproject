@@ -6,6 +6,10 @@ import { MatButtonModule  } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,8 +27,19 @@ import { AuthGuard } from './services/auth.guard';
 import { BookmarkComponent } from './components/user components/Add/bookmark/bookmark.component';
 import { ContentComponent } from './components/user components/Add/content/content.component';
 import { PlusButtonComponent } from './components/user components/plus-button/plus-button.component';
-import { AdminHomeComponent } from './components/user components/Admin/admin-home/admin-home.component';
-
+import { PlusComponent } from './components/admin components/plus/plus.component';
+import { AccountComponent } from './components/user components/account/account.component';
+//import { CategoryComponent } from './components/admin components/category/category.component';
+import { RequestsComponent } from './components/admin components/requests/requests.component';
+import { ViewContentComponent } from './components/user components/view-content/view-content.component';
+import { AdminViewComponent } from './components/admin components/admin-view/admin-view.component';
+import { DiscoverPageComponent } from './components/user components/discover-page/discover-page.component';
+import { AdminDashboardComponent } from './components/admin components/admin-dashboard/admin-dashboard.component';
+import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
+import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
+import { ReasonComponent } from './components/admin components/reason/reason.component';
+import { MyDialogComponent } from './components/admin components/my-dialog/my-dialog.component';
+import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +52,19 @@ import { AdminHomeComponent } from './components/user components/Admin/admin-hom
     BookmarkComponent,
     ContentComponent,
     PlusButtonComponent,
-    AdminHomeComponent,
+    PlusComponent,
+    AccountComponent,
+    //CategoryComponent,
+    RequestsComponent,
+    ViewContentComponent,
+    AdminViewComponent,
+    DiscoverPageComponent,
+    AdminDashboardComponent,
+    AdminBookmarkComponent,
+    AdminContentComponent,
+    ReasonComponent,
+    MyDialogComponent,
+    ViewMoreComponent,
     
   ],
   imports: [
@@ -50,7 +77,14 @@ import { AdminHomeComponent } from './components/user components/Admin/admin-hom
     FlashMessagesModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    Ng2SearchPipeModule
+  ],
+  entryComponents:[
+    MyDialogComponent
   ],
   providers: [ValidateService,AuthService,FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]

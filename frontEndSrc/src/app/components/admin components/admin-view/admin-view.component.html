@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<app-plus></app-plus>
+
+<div class="container">
+    <div class="card">
+    <h3 class="center">{{content.title}}</h3>
+    <hr style="width: 200px;"> 
+        <div class="row">
+            
+            <p>{{content.body}}</p>
+            <a class="btn blue" (click)="onApprove(content._id)">Approve</a>
+            <a class="btn red" (click)="onReject(content._id)">Reject</a>
+
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 const express = require('express');
+const Bookmark = require('../model/bookmark');
 const content = require('../model/content');
 const Content = require('../model/content');
 const router = express.Router();
@@ -30,6 +31,56 @@ router.post('/add', async(req, res, next)=> {
     });
 });
 
+ // @desc show content in editing form
+// @ route GET /content/add/:id
+router.get('/add/:id',(req,res,next)=>{
+    Content.showContent(req.params.id,(err,content)=>{
+        //if(err) throw err;
+        if (!content){
+            Bookmark.findById(req.params.id,(err,bookmark)=>{
+                if(!bookmark){
+                    return res.json({ success:false,msg:'No content found'});
+                }else{
+                    return res.status(200).json(bookmark)
+                }
+            })
+        }else{
+            return res.status(200).json(content)
+        }
+    })
+}) 
+
+
+// @desc edit content in editing form
+// @ route PUT /content/add/:id
+router.put('/add/:id',(req,res,next)=>{
+    Content.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
+        if(error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+        }
+    })
+})
+
+
+// @desc Request to publish
+// @ route PUT /content/request/:id
+router.put('/request/:id',(req,res,next)=>{
+    Content.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
+        if (error){
+            console.log(error)
+            return next(error);
+        }else{
+            return res.json({success:true,msg:'successfully edited'})
+
+        }
+    })
+})
+
+
+
 // @desc show content in dashboard
 // @route GET /content/dashboard/:id
 router.get('/dashboard/:id',(req,res,next)=> {
@@ -41,7 +92,23 @@ router.get('/dashboard/:id',(req,res,next)=> {
         if(!content){
             return res.json({success: false, msg:'No content found'})
         }else {
-            return res.json(content)
+            return res.status(200).json(content)
+        }
+    })
+    //res.json({user:req.user});
+    
+})
+
+// @desc show content in dashboard
+// @route GET /content/discover/:id
+router.get('/discover',(req,res,next)=> {
+    
+    Content.getPublicContent((err, content)=> {
+        if(err) throw err;
+        if(!content){
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.status(200).json(content)
         }
     })
     //res.json({user:req.user});
@@ -56,11 +123,44 @@ router.delete('/delete/:id',(req,res,next) => {
 
         if(err) throw err;
         if(!content){
-            return res.json({success:false, msg:'No content found'})
+            return res.json({success:false, msg:'No content found'});
         } else {
             return res.status(200).json(content)
         }
     })
 });
 
+
+// @desc show search result
+// @route PUT /content/search
+/* router.put('/search',(req,res,next)=>{
+    //console.log(req.body)
+    const title=req.body.body;
+    //console.log(title)
+    Content.searchContent(title,(error,content)=>{
+        if(!content){
+            //console.log('hgbj')
+            return error
+        }else {
+            //console.log(content)
+            return res.status(200).json(content)
+        }
+    })
+}) */
+
+router.put('/search',(req,res,next)=>{
+    //console.log(req.body)
+    const title=req.body.body;
+    const user=req.body.user;
+    //console.log(title)
+    Content.find({body : {"$regex": new RegExp(title)}},{_id:0,_v:0},(error,content)=>{
+        if(!content){
+            console.log('hgbj')
+            return error
+        }else {
+            
+            return res.status(200).json(content)
+        } 
+    })
+})
 module.exports = router;

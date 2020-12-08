@@ -1,0 +1,14 @@
+<app-guestnavbar></app-guestnavbar>
+<app-plus-button></app-plus-button>
+<div class="container">
+    <div class="card">
+    <h3 class="center">{{content.title}}</h3>
+    <hr style="width: 200px;"> 
+        <div class="row">
+            
+            <p>{{content.body}}</p>
+            <a class="btn blue" (click)="onRequest(content._id)">Request</a>
+
+        </div>
+    </div>
+</div>

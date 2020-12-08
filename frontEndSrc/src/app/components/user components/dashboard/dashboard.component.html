@@ -1,14 +1,34 @@
 <app-guestnavbar></app-guestnavbar>
 <app-plus-button></app-plus-button>
-
   <div class="container" >
-    <h3>Welcome {{profile}}</h3>
-    <p>Your bookmarks & contents is here,</p>
+    <ul class="tabs tabs-transparent">
+
+      <li class="tab"><a [routerLink]="['/users/dashboard']" (click)='onBookmark()'>BookMark</a></li>
+      <li class="tab"><a [routerLink]="['/users/dashboard']" (click)='onContent()'>Content</a></li>
+      <li class="tab right sp"><a [routerLink]="['/users/dashboard']">
+        <!-- <form [formGroup]="searchForm" (submit)="onSubmit()">
+        <div class="row" id="topbarsearch">
+          <div class="input-field col s6 s12 blue-text">
+            <i class="blue-text material-icons prefix">search</i>
+            <input type="text" formControlName="body" ng-model="searchText" placeholder="search" id="autocomplete-input" class="autocomplete blue-text" >
+            </div>
+         </div>
+       </form> -->
+       <form action="">
+         <div class="form-group">
+           <input type="text" name="searchText"  placeholder="Search" [(ngModel)]="searchText">
+         </div>
+       </form>
+        </a>
+      </li>
+    </ul>
+    <h3 style="color: orange;">Welcome {{profile}}</h3>
+    <p>Your {{type}} is here,</p>
   </div>
-<h4 class="center">Bookmarks<hr width="150px"></h4>
+<h4 class="center">Your {{type}}<hr width="200px"></h4>
   <div class="container">
     <div class="row">
-      <div class="col s12 m6 l6" *ngFor="let val of bookmark">
+      <div class="col s12 m6 l4" *ngFor="let val of bookmark | filter: searchText ">
         <div class="card">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
@@ -20,29 +40,41 @@
             <a class="btn-floating blue" [routerLink]="['/bookmark/add',val._id]" ><i class="material-icons">edit</i></a>
             </h4>
             <a target="_blank" href="{{val.link}}">{{val.link}}</a>
-            <p>{{val.body}}</p>
-            
+            <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
+              <a [routerLink]="['/content/view',val._id]">View More.....</a>
+  
+            <br>
+            <div class="center" *ngIf="val.status=='private'">          
+              <a class="btn blue" (click)="onRequest(val._id)">Request</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-<h4 class="center">Contents<hr width="150px"></h4>
+<!-- <h4 class="center">{{type}}</h4>
 <div class="container">
   <div class="row">
-      <div class="card col s12 m6 l6" *ngFor="let con of content">
-        <div class="card-image" >
-          <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
-            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
-        </div>
-        <div class="card-content" >  
-          
-          <h4>{{con.title}} 
-          <a class="btn-floating blue" [routerLink]="['/content/edit']"><i class="material-icons">edit</i></a>
-          </h4>
-          <p>{{con.body}}</p>
+      <div class="col s12 m6 l6" *ngFor="let con of content">
+        <div class="card">
+          <div class="card-image" >
+              <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
+          </div>
+          <div class="card-content" >  
+            
+            <h4>{{con.title}} 
+            <a class="btn-floating blue" [routerLink]="['/content/add',con._id]"><i class="material-icons">edit</i></a>
+            </h4>
+            <p>{{con.body}}
+            <a [routerLink]="['/content/view',con._id]">View More.....</a>
+            </p>
+            <br>{{con.status}}
+            <div class="center" >          
+              <a class="btn blue" (click)="onRequest(con._id)">Request</a>
+            </div>
+          </div>
         </div>
       </div>
   </div>
-</div>
+</div> -->

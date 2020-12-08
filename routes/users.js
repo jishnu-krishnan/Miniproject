@@ -49,6 +49,20 @@ router.all('/register', function(req, res, next) {
     
 });
 
+// @desc check already registered or not
+// @route PUT /users/check
+router.put('/check',(req,res,next)=>{
+    const mail = req.body.mail;
+    //console.log(mail)
+     User.getUserByMail(mail,(err,user)=>{
+        if(!user){
+            //console.log(user)
+            return res.json({success: true, msg: 'Mail id not registered'});
+        }else{
+            return res.json({success: false, msg: 'Already registered user'});
+        }
+    }) 
+})
 
 // Authenticate
 router.all('/authenticate', (req, res, next) => {

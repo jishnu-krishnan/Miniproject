@@ -1,0 +1,38 @@
+<app-guestnavbar></app-guestnavbar>
+<app-plus-button></app-plus-button>
+
+<div class="container">
+<div class="card">
+<h3>Change Password</h3>
+<div class="row">
+    <form [formGroup]="changePasswordForm" (submit)="onSubmit()" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" formControlName="oldPassword">
+                <label for="oldPassword">Old Password</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <input type="text" formControlName="newPassword">
+                <label for="newPassword">New Password</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <input type="text" formControlName="confirmPassword">
+                <label for="confirmPassword">Retype Password</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Change" class="btn blue">
+            <input type="reset" value="Cancel" class="btn orange">
+        </div>
+    </form>
+</div>
+</div>
+</div>
+

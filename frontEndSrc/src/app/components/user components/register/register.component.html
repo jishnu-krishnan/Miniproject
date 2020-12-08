@@ -10,6 +10,8 @@
                 *Name is required.
             </div>
             <input type="email" placeholder="Email" formControlName="mail"/>
+            <!-- <span class="invalid-feedback">{{found}}</span> -->
+            <div class="invalid-feedback">{{found}} </div>
             <div class="invalid-feedback" *ngIf="submitted && myForm.mail.errors?.required">
                 *Mail id is required.
             </div>
@@ -19,6 +21,9 @@
             <input type="password" placeholder="Password" formControlName="password"/>
             <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
                 *Password is required.
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.pattern">
+                *Use minimum 8 digits including one number and speacial character.
             </div>
             <button>Sign Up</button>
             <br>

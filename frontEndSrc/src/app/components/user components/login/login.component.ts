@@ -13,7 +13,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class LoginComponent implements OnInit {
   submitted = false;
   loginForm : FormGroup;
-
+  invalid:String;
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   mainForm(){
@@ -44,7 +45,27 @@ export class LoginComponent implements OnInit {
     this.submitted =true;
     if(!this.loginForm.valid){
       return false;
-    }else {
+    } else if(this.loginForm.value.mail=='admin@gmail.com'){
+        console.log('admin login')
+        this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
+          console.log(res)
+          //console.log(res.user)
+          if(res.success){
+            console.log('logined')
+  
+            this.authService.storeUserToken(res.token, res.user);
+            
+            this.ngZone.run(() =>this.router.navigateByUrl('admin/dashboard'))
+          } else{
+            //this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
+            this.invalid='Invalid username or password'
+            this.router.navigateByUrl('/login')
+  
+          }
+        },(error)=> {
+          console.log(error)
+        });
+    } else {
       this.authService.authenticateUser(JSON.stringify(this.loginForm.value)).subscribe(res =>{
         console.log(res)
         //console.log(res.user)
@@ -55,7 +76,8 @@ export class LoginComponent implements OnInit {
           
           this.ngZone.run(() =>this.router.navigateByUrl('users/dashboard'))
         } else{
-          this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
+          //this.flashMessages.show('Invalid username or password',{ cssClass:'alert-danger', timeout: '3000'});
+          this.invalid='Invalid username or password'
           this.router.navigateByUrl('/login')
 
         }

@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<app-plus></app-plus>
+
+
+<div class="container">
+    <div class="card">
+    <h3>Add Content</h3>
+    <div class="row">
+        <form [formGroup]="contentForm" (submit)="onSubmit()" class="col s12">
+            <!--<div class="row">
+                <div class="input-field">
+                    <input type="text" formControlName="link">
+                    <div class="invalid-feedback" *ngIf="submitted && myForm.link.errors?.required">
+                        *Link is required.
+                    </div> 
+                    <label for="link">Link</label> 
+                </div>
+            </div>-->
+    
+            <!--<div class="row">
+                <div >
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option value="private" selected>Private</mat-option>
+                            <mat-option value="public">Public</mat-option>
+                        </mat-select>
+                    </mat-form-field>        
+                </div>
+            </div>-->
+    
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" formControlName="title" value="{{content.title}}">
+                    <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
+                        *Title is required.
+                    </div> 
+                    <label for="title">Title</label>
+                </div>
+            </div>
+    
+            <div class="row">
+                <label for="description">Description</label>
+                <div class="input-field">
+                    
+                    <ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic','alignment','|', 'numberedList', 'blockQuote','|','undo','redo' ] }" [editor]="Editor" data="" formControlName="body" ></ckeditor>
+                </div>
+                
+            </div>
+    
+            <div class="row">
+                <input type="submit" value="Save" class="btn blue">
+                <input type="reset" value="Cancel" class="btn orange">
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    
