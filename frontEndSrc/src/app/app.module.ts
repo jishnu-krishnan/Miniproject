@@ -39,6 +39,7 @@ import { AdminBookmarkComponent } from './components/admin components/admin-book
 import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
 import { ReasonComponent } from './components/admin components/reason/reason.component';
 import { MyDialogComponent } from './components/admin components/my-dialog/my-dialog.component';
+import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { MyDialogComponent } from './components/admin components/my-dialog/my-di
     AdminContentComponent,
     ReasonComponent,
     MyDialogComponent,
+    ViewMoreComponent,
     
   ],
   imports: [

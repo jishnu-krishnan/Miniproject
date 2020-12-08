@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<app-plus-button></app-plus-button>
+<div class="container">
+    <div class="card">
+    <h3 class="center">{{content.title}}</h3>
+    <hr style="width: 200px;"> 
+        <div class="row">
+            
+            <p>{{content.body}}</p>
+             <a class="btn red" [routerLink]="['/admin/dashboard']">Back</a>
+
+        </div>
+    </div>
+</div>

@@ -27,7 +27,7 @@ export interface DialogData {
 } */
 
 export class AdminDashboardComponent implements OnInit {
-
+  keyword:String;
   bookmark: any=[];
   content : any=[];
   type: String;
