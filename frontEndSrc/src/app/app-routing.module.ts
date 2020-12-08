@@ -7,11 +7,12 @@ import { RegisterComponent } from "./components/user components/register/registe
 import { GuestnavbarComponent } from "./components/user components/guestnavbar/guestnavbar.component";
 import { BookmarkComponent } from './components/user components/Add/bookmark/bookmark.component';
 import { ContentComponent } from './components/user components/Add/content/content.component';
+import { AdminHomeComponent } from './components/user components/Admin/admin-home/admin-home.component';
 
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  
+
   {path:'', component: HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'users/dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'bookmark/add', component:BookmarkComponent, canActivate:[AuthGuard]},
   {path:'content/add', component:ContentComponent, canActivate:[AuthGuard]},
   {path:'bookmark/add/:id', component:BookmarkComponent, canActivate:[AuthGuard]},
-  {path:'content/add/:id', component:ContentComponent, canActivate:[AuthGuard]}
+  {path:'content/add/:id', component:ContentComponent, canActivate:[AuthGuard]},
+  {path:'admin-home/add', component:AdminHomeComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

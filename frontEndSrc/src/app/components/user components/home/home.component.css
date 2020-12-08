@@ -1,7 +1,9 @@
 .container{
     width: 85%;
 }
-
+.card{
+height: 25pc;
+}
 h1{
     font-size: 4.2rem;
     line-height: 110%;
@@ -11,7 +13,7 @@ h1{
     -ms-flex-align: center;
     -ms-flex-pack: center;
     background-color: #111111;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255, 255, 255);
     -moz-align-items: center;
     -webkit-align-items: center;
     -ms-align-items: center;

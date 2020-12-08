@@ -20,6 +20,7 @@ export class AuthService {
   baseUri:string = 'http://localhost:3000/users';
   bookmarkUri:String = 'http://localhost:3000/bookmark';
   contentUri:String = 'http://localhost:3000/content';
+  adminUri:String = 'http://localhost:3000/admin';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http:HttpClient) { }
@@ -80,6 +81,14 @@ export class AuthService {
     let url= `${this.contentUri}/add`
     return this.http.post(url, content ,{headers:this.headers}).pipe(catchError(this.errorMgmt))
     
+  }
+
+  //create catogory-by admin
+
+  createCatogory(catogory): Observable<any> {
+  let url= `${this.adminUri}/add`
+  return this.http.post(url, catogory ,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  
   }
 
   // User Dashboard

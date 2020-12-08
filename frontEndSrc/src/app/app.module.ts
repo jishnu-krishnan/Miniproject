@@ -23,6 +23,7 @@ import { AuthGuard } from './services/auth.guard';
 import { BookmarkComponent } from './components/user components/Add/bookmark/bookmark.component';
 import { ContentComponent } from './components/user components/Add/content/content.component';
 import { PlusButtonComponent } from './components/user components/plus-button/plus-button.component';
+import { AdminHomeComponent } from './components/user components/Admin/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PlusButtonComponent } from './components/user components/plus-button/pl
     BookmarkComponent,
     ContentComponent,
     PlusButtonComponent,
+    AdminHomeComponent,
     
   ],
   imports: [
