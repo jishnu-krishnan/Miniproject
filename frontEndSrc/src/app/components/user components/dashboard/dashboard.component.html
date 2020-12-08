@@ -23,7 +23,7 @@
       </li>
     </ul>
     <h3 style="color: orange;">Welcome {{profile}}</h3>
-    <p>Your bookmarks & contents is here,</p>
+    <p>Your {{type}} is here,</p>
   </div>
 <h4 class="center">Your {{type}}<hr width="200px"></h4>
   <div class="container">
@@ -40,9 +40,9 @@
             <a class="btn-floating blue" [routerLink]="['/bookmark/add',val._id]" ><i class="material-icons">edit</i></a>
             </h4>
             <a target="_blank" href="{{val.link}}">{{val.link}}</a>
-            <p>{{(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)}}
+            <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
               <a [routerLink]="['/content/view',val._id]">View More.....</a>
-            </p>
+  
             <br>
             <div class="center" *ngIf="val.status=='private'">          
               <a class="btn blue" (click)="onRequest(val._id)">Request</a>

@@ -23,8 +23,8 @@
         </a>
       </li>
     </ul>
-    <h3>Welcome {{profile}}</h3>
-    <p>Your bookmarks & contents is here,</p>
+    <h3 style="color: orange;">Welcome {{profile}}</h3>
+    <p>Public {{type}} is here,</p>
   </div>
 <!-- <h4 class="center">Bookmarks<hr width="150px"></h4>
   <div class="container">
@@ -64,9 +64,9 @@
 <!--             <a class="btn-floating blue" [routerLink]="['/content/add',val._id]"><i class="material-icons">edit</i></a>
  -->            </h4>
             <a target="_blank" href="{{val.link}}">{{val.link}}</a>
-            <p >{{(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)}}
-            <a [routerLink]="['/content/view',val._id]">View More.....</a>
-            </p>
+            <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
+              <a [routerLink]="['/content/view',val._id]">View More.....</a>
+            
             
           </div>
         </div>
