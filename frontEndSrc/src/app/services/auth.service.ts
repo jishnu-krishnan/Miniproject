@@ -110,6 +110,12 @@ export class AuthService {
   
   }
 
+  // Add comment in public content
+  addComment(comment):Observable<any>{
+    let url=`${this.contentUri}/comment`
+    return this.http.post(url,comment,{headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
   // User Dashboard
    showDashboard(userid):Observable<any>{
     //headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -137,6 +143,18 @@ export class AuthService {
 
   }
 
+  //show public content of a particular user
+  showUserContent(userid):Observable<any>{
+    let url= `${this.contentUri}/user/${userid}`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
+  //show public bookmark of a particular user
+  showUserBookmark(userid):Observable<any>{
+    let url= `${this.bookmarkUri}/user/${userid}`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+  }
+
   // show content in editing form
   showContentByid(contentid):Observable<any>{
     
@@ -150,6 +168,11 @@ export class AuthService {
     let url= `${this.bookmarkUri}/add/${bookmarkid}`
     return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
     
+  }
+  // show comments
+  showComment(contentid):Observable<any>{
+    let url= `${this.contentUri}/view/comment/${contentid}`
+    return this.http.get(url,{headers:this.headers}).pipe(catchError(this.errorMgmt))
   }
 
   // Search Content

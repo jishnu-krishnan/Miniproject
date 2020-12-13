@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './components/admin components/admin-das
 import { AdminContentComponent } from './components/admin components/admin-content/admin-content.component';
 import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
 import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
+import { UserContentComponent } from './components/user components/user-content/user-content.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[AuthGuard]},
   {path:'admin/content', component:AdminContentComponent, canActivate:[AuthGuard]},
   {path:'admin/bookmark', component:AdminBookmarkComponent, canActivate:[AuthGuard]},
-  {path:'admin/viewcontent/:id', component:ViewMoreComponent, canActivate:[AuthGuard]}
+  {path:'admin/viewcontent/:id', component:ViewMoreComponent, canActivate:[AuthGuard]},
+  {path:'users/bookmark/:id', component:UserContentComponent, canActivate:[AuthGuard]}
 
 ];
 

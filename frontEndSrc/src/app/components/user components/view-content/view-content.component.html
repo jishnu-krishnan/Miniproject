@@ -6,9 +6,34 @@
     <hr style="width: 200px;"> 
         <div class="row">
             
-            <p>{{content.body}}</p>
-            <a class="btn blue" (click)="onRequest(content._id)">Request</a>
+            <p [innerHTML]="content.body"></p>
+            <div class="center" *ngIf="content.status=='private'">
+                <a class="btn blue" (click)="onRequest(content._id)">Request</a>
+            </div>
+        </div>
+    </div>
+<!-- comments -->
+    <div class="card" *ngIf="content.status=='public'">
+        <div class="row">
+            <h4 class="center">Comments</h4>
+            <hr style="width: 160px;"> 
+            <form [formGroup]="commentform" (submit)="onSubmit(content._id)">
+                <!-- <input type="text" formControlName="comment" placeholder="Add comment"> -->
+                    <div class="col s12">
+                        <input type="text" formControlName="comment" placeholder="Add comment"> 
+                    </div>
+                    <!-- <a href="#!" class="secondary-content">
+                        <i class="material-icons">send</i></a> -->
+                <!-- <i class="fas fa-paper-plane"></i> -->
+            </form>
+        </div>
 
+        <div class="row" *ngFor="let c of comment"> 
+            <div class="chip">
+                <i class="fa fa-user" style="padding-right: .2cm;" aria-hidden="true"></i>
+                {{c.user.name}}
+            </div>
+            {{c.comment}}
         </div>
     </div>
 </div>

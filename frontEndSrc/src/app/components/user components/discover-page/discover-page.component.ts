@@ -32,17 +32,18 @@ export class DiscoverPageComponent implements OnInit {
        console.log(error)
      });
 
-      this.authService.showPublicDashboard().subscribe(res => {
+     /*  this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
       
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
-    }); 
+    });  */
      
      
      this.authService.showPublicContent().subscribe(res => {
       this.bookmark=res
+      console.log(res)
       this.type='Contents'
       },(error)=>{
       console.log(error)

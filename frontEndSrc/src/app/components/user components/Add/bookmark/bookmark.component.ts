@@ -30,7 +30,7 @@ export class BookmarkComponent implements OnInit {
   //STATUS:any = ['Private', 'Public']
 
   public Editor = ClassicEditor;
-  public data = '<p>tyuhi</p>';
+  //public data = '<p>tyuhi</p>';
   constructor(
     public fb: FormBuilder,
     private authService : AuthService,
@@ -43,7 +43,7 @@ export class BookmarkComponent implements OnInit {
     this.id = this.route.snapshot.params['id']
     //console.log(this.id)
     if(this.id!=undefined){
-      this.authService.showBookmark(this.id).subscribe(res =>{
+      this.authService.showBookmarkByid(this.id).subscribe(res =>{
         
         this.bookmarkForm.controls['title'].setValue(res.title)
         this.bookmarkForm.controls['body'].setValue(res.body)

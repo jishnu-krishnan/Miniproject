@@ -38,8 +38,8 @@ module.exports.addContent = function(newContent, callback){
 // show dashboard content
 module.exports.getContentByUser = function(id, callback){
   const query = {user:id}
-  console.log(query)
-  Content.find(query,callback);
+  //console.log(query)
+  Content.find(query,callback).sort({ createdAt: 'desc' });
 }
 
 //show content in edit form 
@@ -69,7 +69,7 @@ module.exports.showRequest = function(callback){
 
 module.exports.getPublicContent = function(callback){
   const query = {status: 'public'}
-  Content.find(query,callback)
+  Content.find(query,callback).populate('user').sort({ createdAt: 'desc' })
 }
 
 /* module.exports.searchContent = function(title,callback){
@@ -77,3 +77,9 @@ module.exports.getPublicContent = function(callback){
   //console.log(query)
   Content.find(query,callback)
 } */
+
+module.exports.getUserContent = function(id, callback){
+  const query = {status: 'public', user: id}
+  //console.log(query)
+  Content.find(query,callback).populate('user').sort({ createdAt: 'desc' })
+}

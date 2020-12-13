@@ -46,7 +46,7 @@ type:String;
       this.authService.showDashboard(user.id).subscribe(res => {
       //console.log(res)
       this.bookmark=res
-      this.type='Bookmark'
+      this.type='bookmark'
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -66,7 +66,7 @@ type:String;
     this.authService.showDashboard(user.id).subscribe(res => {
       //console.log(res)
       this.bookmark=res
-      this.type='Bookmark'
+      this.type='bookmark'
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -80,7 +80,7 @@ type:String;
     this.authService.showContent(user.id).subscribe(res =>{
       console.log(res)
       this.bookmark=res
-      this.type='Contents'
+      this.type='content'
 
     },(error)=>{
       console.log(error)

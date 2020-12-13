@@ -94,7 +94,7 @@ export class ContentComponent implements OnInit {
     }
  } else {
     this.authService.createContent(JSON.stringify(cm)).subscribe(res =>{
-    console.log(res)
+    //console.log(res)
     if(res.success){
         console.log('User Successfully Content');
         this.router.navigateByUrl('/users/dashboard')

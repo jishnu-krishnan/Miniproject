@@ -42,7 +42,7 @@ module.exports.addBookmark = function(newBookmark, callback){
 // show dashboard items
 module.exports.getBookmarkByUser = function(id, callback){
   const query = {user:id}
-  Bookmark.find(query,callback);
+  Bookmark.find(query,callback).sort({ createdAt: 'desc' });
 }
 
 //delete user boomark
@@ -52,11 +52,11 @@ module.exports.deleteBookmark = function(id ,callback){
   Bookmark.findOneAndRemove(query,callback)
 }
 
-/* //show bookmark in edit form 
+ //show bookmark in edit form 
 module.exports.showBookmark=function(id,callback){
   const query = {_id:id}
   Bookmark.findById(query,callback)
-} */
+} 
 
 
 // edit bookmark
@@ -67,11 +67,17 @@ module.exports.editBookmark=function(id,bm,callback){
 
 module.exports.getPublicBookmark = function(callback){
   const query = {status: 'public'}
-  Bookmark.find(query,callback)
+  Bookmark.find(query,callback).populate('user').sort({ createdAt: 'desc' })
 }
 
 module.exports.searchBookmark = function(id,title, callback){
   const query = {title : title, user: id}
   //console.log(query)
   Bookmark.find(query,callback)
+}
+
+module.exports.getUserBookmark = function(id, callback){
+  const query = {status: 'public', user: id}
+  //console.log(query)
+  Bookmark.find(query,callback).populate('user').sort({ createdAt: 'desc' })
 }

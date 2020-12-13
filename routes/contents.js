@@ -1,6 +1,7 @@
 const express = require('express');
 const Bookmark = require('../model/bookmark');
-const content = require('../model/content');
+const comment = require('../model/comment');
+const Comment = require('../model/comment');
 const Content = require('../model/content');
 const router = express.Router();
 
@@ -27,6 +28,27 @@ router.post('/add', async(req, res, next)=> {
             res.json({success:false, msg:'failed to added'});
         }else {
             res.json({success:true, msg:'successfully added'});
+        }
+    });
+});
+
+
+// @desc add comment in publish content
+// @route POST /content/comment
+router.post('/comment',(req,res,next)=>{
+    let newComment = new Comment({
+        comment:req.body.comment,
+        user:req.body.user,
+        content:req.body.content,
+        createrdAt:req.body.createrdAt
+    });
+
+    Comment.addComment(newComment,(err,comment)=>{
+        if(err){
+            console.log(err);
+            res.json({success:false, msg:'Failed to comment'});
+        } else {
+            res.json({success:true, msg:'Comment successfully added'})
         }
     });
 });
@@ -99,6 +121,23 @@ router.get('/dashboard/:id',(req,res,next)=> {
     
 })
 
+// @desc show content for particular user
+// @route GET /content/user/:id
+router.get('/user/:id',(req,res,next)=> {
+
+    Content.getUserContent(req.params.id,(err, content)=> {
+        if(err) throw err;
+        if(!content){
+            console.log(err)
+            return res.json({success: false, msg:'No content found'})
+        }else {
+            return res.status(200).json(content)
+        }
+    })
+    
+})
+
+
 // @desc show content in dashboard
 // @route GET /content/discover/:id
 router.get('/discover',(req,res,next)=> {
@@ -163,4 +202,17 @@ router.put('/search',(req,res,next)=>{
         } 
     })
 })
+
+// @desc view comments
+// @route GET /content/view/comment/:id
+router.get('/view/comment/:id',(req,res,next)=>{
+    Comment.getComments(req.params.id,(err,comment)=>{
+        if(!comment){
+            return res.json({success:false, msg:' Not found'})
+        } else {
+            return res.json(comment)
+        }
+    })
+    })
+
 module.exports = router;

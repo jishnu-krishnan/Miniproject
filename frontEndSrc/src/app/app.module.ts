@@ -40,6 +40,8 @@ import { AdminContentComponent } from './components/admin components/admin-conte
 import { ReasonComponent } from './components/admin components/reason/reason.component';
 import { MyDialogComponent } from './components/admin components/my-dialog/my-dialog.component';
 import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
+import { UserContentComponent } from './components/user components/user-content/user-content.component';
+import { UserViewComponent } from './components/user components/user-view/user-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { ViewMoreComponent } from './components/admin components/view-more/view-
     ReasonComponent,
     MyDialogComponent,
     ViewMoreComponent,
+    UserContentComponent,
+    UserViewComponent,
     
   ],
   imports: [

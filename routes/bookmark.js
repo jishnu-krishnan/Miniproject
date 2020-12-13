@@ -103,6 +103,24 @@ router.get('/dashboard/:id',(req,res,next)=> {
     
 })
 
+// @desc show content for particular user
+// @route GET /content/user/:id
+router.get('/user/:id',(req,res,next)=> {
+
+    Bookmark.getUserBookmark(req.params.id,(err, bookmark)=> {
+        if(err) throw err;
+        if(!bookmark){
+            console.log(err)
+            return res.json({success: false, msg:'No bookmark found'})
+        }else {
+            return res.status(200).json(bookmark)
+        }
+    })
+    
+})
+
+
+
 // @desc delete bookmark
 // @route DELETE /bookmark/delete/:id
 router.delete('/delete/:id',(req,res,next) => {

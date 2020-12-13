@@ -60,9 +60,13 @@
  -->          </div>
           <div class="card-content" >  
             
-            <h4>{{val.title}} 
+            <h5>{{val.title}} 
 <!--             <a class="btn-floating blue" [routerLink]="['/content/add',val._id]"><i class="material-icons">edit</i></a>
- -->            </h4>
+ -->            </h5>
+              <div class="chip">
+                <i class="fa fa-user" style="padding-right: .2cm;" aria-hidden="true"></i>
+                <a [routerLink]="['/users/bookmark',val.user._id]">{{val.user.name}}</a>
+              </div><br>
             <a target="_blank" href="{{val.link}}">{{val.link}}</a>
             <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
               <a [routerLink]="['/content/view',val._id]">View More.....</a>
