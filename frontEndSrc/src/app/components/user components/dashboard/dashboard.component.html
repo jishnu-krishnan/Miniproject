@@ -1,9 +1,13 @@
 <app-guestnavbar></app-guestnavbar>
 <app-plus-button></app-plus-button>
-  <div class="container" >
-    <h3 style="color: orange;">Welcome {{profile}}</h3>
-    <p>Your {{type}} is here,</p>
-  </div>
+  <!-- <div class="container" > -->
+    <section id="banner">
+      <div class="inner">
+        <h1 style="color: white;">Welcome {{profile}}</h1>
+        <p>Your {{type}} is here,</p>
+      </div>
+    </section>
+  <!-- </div> -->
 <h4 class="center">Your {{type}}<hr width="200px"></h4>
   <div class="container">
     <ul class="tabs tabs-transparent center">
@@ -29,7 +33,7 @@
     </ul>
 
     <div class="row">
-      <div class="col s12 m6 l4" *ngFor="let val of bookmark | filter: searchText ">
+      <div class="col s12 m6 l3" *ngFor="let val of bookmark | filter: searchText ">
         <div class="card">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
@@ -40,13 +44,24 @@
             <h4>{{val.title}}
             <a class="btn-floating blue" [routerLink]="['/',type,'add',val._id]" ><i class="material-icons">edit</i></a>
             </h4>
-            <a target="_blank" href="{{val.link}}">{{val.link.length>25? (val.link | slice:0:25)+'...':(val.link)}}</a>
+            <a target="_blank" href="{{val.link}}">{{val.link}}</a>
             <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
               <a [routerLink]="['/content/view',val._id]">View More.....</a>
   
             <br>
-            <div class="center" *ngIf="val.status=='private'">          
-              <a class="btn blue" (click)="onRequest(val._id)">Request</a>
+            <div class="center" *ngIf="val.status=='private' && val.reason==''" >          
+              <a class="btn blue" (click)="onRequest(val._id)">Request</a>              
+            </div>
+            <div class="center" *ngIf="val.status=='private' && val.reason!=''" >          
+              <p style="color: red;">{{val.reason}}</p>
+              
+            </div>
+            <div class="center" *ngIf="val.status=='pending'">       
+              <a class="btn" disabled>Pending</a>   
+              <a class="btn red" (click)="onCancel(val._id)">Cancel</a>
+            </div>
+            <div class="center" *ngIf="val.status=='public'">       
+              <a class="btn red" (click)="onCancel(val._id)">Cancel</a>
             </div>
           </div>
         </div>

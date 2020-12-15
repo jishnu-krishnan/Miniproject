@@ -79,7 +79,8 @@ export class ContentComponent implements OnInit {
       title:c.title,
       status:c.status,
       body:c.body,
-      user:user.id
+      user:user.id,
+      reason:''
     } 
  
  //console.log(JSON.stringify(cm))

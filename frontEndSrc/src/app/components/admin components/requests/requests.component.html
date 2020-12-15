@@ -2,25 +2,23 @@
 <app-plus></app-plus>
 <div class="container">
     <div class="card">
-        <h6>Requests</h6>
+        <h6>Content Requests</h6>
 
         <p>Here are new requests</p>
-        <!-- {{#if stories}} -->
         <table class="striped">
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Date</th>
-                    <th>Status</th>
+                    <th>Description</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody >
-                <!-- {{#each stories}} -->
-                <tr *ngFor="let val of content"><!-- /stories/{{_id}} -->
-                    <td> <a [routerLink]="['/admin/view',val._id]">{{val.title}}</a> </td><!-- {{formatDate val.createdAt 'MMMM Do YYYY, h:mm:ss a'}} -->
+                <tr *ngFor="let val of content">
+                    <td> <a [routerLink]="['/admin/view',val._id]">{{val.title}}</a> </td>
                     <td> {{ val.createdAt}} </td>
-                    <td> <span class="dash-status">{{val.body}}</span> </td>
+                    <td> <span class="dash-status"><p [innerHTML]=(val.body)></p></span> </td>
                     <td>
                          <!-- <a href="" class="btn btn-float">
                             <i class="fas fa-print"></i>
@@ -36,11 +34,53 @@
                         <a class="btn red right" (click)="onReject(val._id)">Reject</a>
                     </td>
                 </tr>
-                <!-- {{/each}} -->
             </tbody>
         </table>
-        <!-- {{else}}
-        <p>You have not created any stories</p>
-        {{/if}} -->
+    </div>
+</div>
+
+
+<!-- Bookmark -->
+
+
+<div class="container">
+    <div class="card">
+        <h6>Bookmark Requests</h6>
+
+        <p>Here are new requests</p>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Link</th>
+                    <th>Description</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let val of bookmark">
+                    <td> <a [routerLink]="['/admin/view',val._id]">{{val.title}}</a> </td>
+                    <td> {{ val.createdAt}} </td>
+                    <td> <a target="_blank" href="{{val.link}}">{{val.link}}</a> </td>
+                    <td> <span class="dash-status"><p [innerHTML]=(val.body)></p></span> </td>
+                    <td>
+                         <!-- <a href="" class="btn btn-float">
+                            <i class="fas fa-print"></i>
+                        </a>
+                        <form  method="POST" id="delete-form">
+                            <input type="hidden" name="_method" value="Reject">
+                            <button type="submit" class="btn red">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form> -->
+
+                        <a class="btn blue right" (click)="onApprove(val._id)">Approve</a>
+                        <a class="btn red right" (click)="onReject(val._id)">Reject</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

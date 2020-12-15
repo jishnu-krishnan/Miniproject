@@ -246,6 +246,13 @@ export class AuthService {
 
   }
 
+  // show bookmark Request to seen in admin page
+  showBRequests():Observable<any>{
+    let url= `${this.bookmarkUri}/request`
+    return this.http.get(url, {headers:this.headers}).pipe(catchError(this.errorMgmt))
+
+  }
+
   // Admin approve the content to publish
   approveRequest(contentid,status):Observable<any>{
     let url=`${this.adminUri}/approve/${contentid}`

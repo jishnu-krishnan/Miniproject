@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Content = require('../model/content');
 const Bookmark = require('../model/bookmark');
-const bookmark = require('../model/bookmark');
+//const bookmark = require('../model/bookmark');
 
 require('dotenv').config();
 
