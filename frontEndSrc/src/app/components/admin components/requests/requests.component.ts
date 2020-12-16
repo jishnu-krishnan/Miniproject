@@ -19,6 +19,7 @@ export class RequestsComponent implements OnInit {
   reason:String;
   data : any
   content : any=[];
+  bookmark : any=[];
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -33,6 +34,13 @@ export class RequestsComponent implements OnInit {
     },(error)=>{
       console.log(error)
     })
+
+    this.authService.showBRequests().subscribe(res=>{
+      this.bookmark=res
+    },(error)=>{
+      console.log(error)
+    })
+
   }
 
   onApprove(id){
@@ -62,7 +70,7 @@ export class RequestsComponent implements OnInit {
         console.log(this.reason)
         const up={
           status:'private',
-          reason:this.reason
+          reason:'Rejected for : '+this.reason
   
         }
         this.authService.rejectRequest(id,JSON.stringify(up)).subscribe(res => {

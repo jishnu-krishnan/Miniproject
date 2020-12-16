@@ -29,6 +29,10 @@ const BookmarkSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  reason: {
+      type: String
+        
+    }
 })
 
 const Bookmark = module.exports = mongoose.model('Bookmark', BookmarkSchema)
@@ -80,4 +84,10 @@ module.exports.getUserBookmark = function(id, callback){
   const query = {status: 'public', user: id}
   //console.log(query)
   Bookmark.find(query,callback).populate('user').sort({ createdAt: 'desc' })
+}
+
+//show requested bookmark
+module.exports.showRequest = function(callback){
+  const query = {status: 'pending'}
+  Bookmark.find(query,callback)
 }

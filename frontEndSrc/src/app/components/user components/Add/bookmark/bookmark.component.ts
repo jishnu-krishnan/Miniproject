@@ -90,7 +90,8 @@ export class BookmarkComponent implements OnInit {
       title:b.title,
       status:b.status,
       body:b.body,
-      user:user.id
+      user:user.id,
+      reason:''
     } 
     //console.log(JSON.stringify(bm))
     

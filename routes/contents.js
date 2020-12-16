@@ -1,4 +1,5 @@
 const express = require('express');
+const bookmark = require('../model/bookmark');
 const Bookmark = require('../model/bookmark');
 const comment = require('../model/comment');
 const Comment = require('../model/comment');
@@ -19,7 +20,8 @@ router.post('/add', async(req, res, next)=> {
         body: req.body.body,
         status: req.body.status,
         user: req.body.user,
-        createrdAt: req.body.createrdAt
+        createrdAt: req.body.createrdAt,
+        reason:req.body.reason
     });
 
     Content.addContent(newContent,(err,content) =>{
@@ -91,9 +93,14 @@ router.put('/add/:id',(req,res,next)=>{
 // @ route PUT /content/request/:id
 router.put('/request/:id',(req,res,next)=>{
     Content.findByIdAndUpdate(req.params.id,{$set: req.body},(error,content)=>{
-        if (error){
-            console.log(error)
-            return next(error);
+        if (!content){
+            Bookmark.findByIdAndUpdate(req.params.id,{$set: req.body},(error,bookmark)=>{
+                if(!bookmark){
+                    return res.json({success:false ,msg:'Not found id'})
+                }else{
+                    return res.json({success:true,msg:'successfully edited'})
+                }
+            })
         }else{
             return res.json({success:true,msg:'successfully edited'})
 

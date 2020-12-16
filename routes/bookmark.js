@@ -27,7 +27,8 @@ router.post('/add', async (req, res, next) => {
         body: req.body.body,
         status: req.body.status,
         user: req.body.user,
-        createrdAt: req.body.createrdAt
+        createrdAt: req.body.createrdAt,
+        reason: req.body.reason
     });
     Bookmark.addBookmark(newBookmark,(err, bookmark) =>{
         if(err){
@@ -70,6 +71,18 @@ const li=req.body.link
 
         })
 })
+
+// @desc view requests
+// @route GET /admin/request
+router.get('/request',(req,res,next)=>{
+    Bookmark.showRequest((err,bookmark)=>{
+        if(!bookmark){
+            return res.json({success: false, msg:'No request found'})
+        }else {
+            return res.json(bookmark)
+        }
+    })
+});
 
 // @desc show search bookmark
 // @route PUT /bookmark/search/:id

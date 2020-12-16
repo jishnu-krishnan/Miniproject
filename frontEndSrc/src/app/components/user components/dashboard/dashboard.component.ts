@@ -106,10 +106,23 @@ type:String;
       this.authService.requestPublish(id,JSON.stringify(up)).subscribe(res =>{
         console.log(res)
         this.router.navigateByUrl('/users/dashboard')
+        this.ngOnInit()
       });
     }
   }
 
+
+  onCancel(id){
+    if(window.confirm('Are you Sure?')){
+      const up={
+        status:'private'
+      }
+      this.authService.requestPublish(id,JSON.stringify(up)).subscribe(res => {
+        this.router.navigateByUrl('/users/dashboard')
+        this.ngOnInit()
+      })
+    }
+  }
   /*onEditBookmark(id){
      this.authService.showBookmark(id).subscribe(res => {
      // this.ngOnInit();

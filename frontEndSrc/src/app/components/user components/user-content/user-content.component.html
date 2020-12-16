@@ -2,6 +2,11 @@
 <app-guestnavbar></app-guestnavbar>
 <app-plus-button></app-plus-button>
 
+  
+<h4 class="center" *ngFor="let n of bookmark; let i = index"  style="color: orange;">
+  <div *ngIf="i == 0 ">{{n.user.name}} Public {{type}}<hr width="235px"></div>
+  </h4>
+  
   <div class="container" >
     <ul class="tabs tabs-transparent">
       <li class="tab"><a [routerLink]="['/users/bookmark']" (click)='onBookmark()'>BookMark</a></li>
@@ -25,11 +30,7 @@
     </ul>
     <!-- <p>Public {{type}} is here,</p> -->
   </div>
-
-<h4 class="center" *ngFor="let n of bookmark; let i = index"  style="color: orange;">
-  <div *ngIf="i == 0 ">{{n.user.name}} Public {{type}}<hr width="235px"></div>
-  </h4>
-    
+  
 <div class="container">
   
   <div class="row">
