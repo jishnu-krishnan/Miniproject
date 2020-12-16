@@ -1,3 +1,4 @@
+import { BuiltinType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
@@ -13,6 +14,8 @@ export class DiscoverPageComponent implements OnInit {
   type:String;
   profile :String;
   searchText:String;
+  limit:Number;
+  temp:Number;
 
   constructor(
     private router: Router,
@@ -20,7 +23,7 @@ export class DiscoverPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.limit=9
     const user= JSON.parse(localStorage.getItem('user'))
 
      this.authService.getProfile(user.id).subscribe(res =>{
@@ -43,8 +46,10 @@ export class DiscoverPageComponent implements OnInit {
      
      this.authService.showPublicContent().subscribe(res => {
       this.bookmark=res
-      console.log(res)
+      //console.log(res)
       this.type='Contents'
+      this.temp=res.length
+      //console.log(this.temp)
       },(error)=>{
       console.log(error)
       })
@@ -57,6 +62,7 @@ export class DiscoverPageComponent implements OnInit {
       //console.log(res)
       this.bookmark=res
       this.type='Bookmark'
+      this.temp=res.length
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -69,13 +75,19 @@ export class DiscoverPageComponent implements OnInit {
     //const user= JSON.parse(localStorage.getItem('user'))
 
     this.authService.showPublicContent().subscribe(res =>{
-      console.log(res)
+      //console.log(res)
       this.bookmark=res
       this.type='Contents'
+      this.temp=res.length
 
     },(error)=>{
       console.log(error)
     });
+  }
+  showMore(){
+    this.limit=this.temp;
+    //this.style.visibility= 'hidden';
+    
   }
 
 }

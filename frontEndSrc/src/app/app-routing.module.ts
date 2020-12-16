@@ -39,7 +39,8 @@ const routes: Routes = [
   {path:'admin/content', component:AdminContentComponent, canActivate:[AuthGuard]},
   {path:'admin/bookmark', component:AdminBookmarkComponent, canActivate:[AuthGuard]},
   {path:'admin/viewcontent/:id', component:ViewMoreComponent, canActivate:[AuthGuard]},
-  {path:'users/bookmark/:id', component:UserContentComponent, canActivate:[AuthGuard]}
+  {path:'users/bookmark/:id', component:UserContentComponent, canActivate:[AuthGuard]},
+  //{path:'users/bookmark', component:UserContentComponent, canActivate:[AuthGuard]}
 
 ];
 

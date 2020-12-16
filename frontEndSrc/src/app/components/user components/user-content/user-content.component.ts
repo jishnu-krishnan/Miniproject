@@ -16,6 +16,8 @@ export class UserContentComponent implements OnInit {
   type:String;
   profile :String;
   searchText:String;
+  limit:Number;
+  temp:Number;
 
   constructor(
     private router: Router,
@@ -24,11 +26,15 @@ export class UserContentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.limit=9
+    
     this.id = this.route.snapshot.params['id']
     this.authService.showUserContent(this.id).subscribe(res => {
       this.bookmark=res
-      console.log(res)
+      //console.log(res)
       this.type='Contents'
+      this.temp=res.length
       },(error)=>{
       console.log(error)
       })
@@ -39,8 +45,9 @@ export class UserContentComponent implements OnInit {
     this.id = this.route.snapshot.params['id']
     this.authService.showUserContent(this.id).subscribe(res => {
       this.bookmark=res
-      console.log(res)
+      //console.log(res)
       this.type='Contents'
+      this.temp=res.length
       },(error)=>{
       console.log(error)
       })
@@ -50,11 +57,18 @@ export class UserContentComponent implements OnInit {
     this.id = this.route.snapshot.params['id']
     this.authService.showUserBookmark(this.id).subscribe(res => {
       this.bookmark=res
-      console.log(res)
-      this.type='Contents'
+      //console.log(res)
+      this.type='Bookmark'
+      this.temp=res.length
       },(error)=>{
       console.log(error)
       })
+  }
+
+  showMore(){
+    this.limit=this.temp;
+    //this.style.visibility= 'hidden';
+    
   }
 
 }

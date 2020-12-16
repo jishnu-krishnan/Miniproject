@@ -18,6 +18,9 @@ status: String;
 profile :String;
 searchText:String;
 type:String;
+limit:Number;
+temp:Number;
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -33,6 +36,8 @@ type:String;
   }
 
   ngOnInit(): void {
+
+    this.limit=9
     const user= JSON.parse(localStorage.getItem('user'))
 //console.log(user)
      this.authService.getProfile(user.id).subscribe(res =>{
@@ -47,6 +52,7 @@ type:String;
       //console.log(res)
       this.bookmark=res
       this.type='bookmark'
+      this.temp=res.length
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -67,6 +73,7 @@ type:String;
       //console.log(res)
       this.bookmark=res
       this.type='bookmark'
+      this.temp=res.length
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -81,7 +88,7 @@ type:String;
       console.log(res)
       this.bookmark=res
       this.type='content'
-
+      this.temp=res.length
     },(error)=>{
       console.log(error)
     });
@@ -140,6 +147,12 @@ type:String;
         console.log(error)
       });
     }
+  }
+
+  showMore(){
+    this.limit=this.temp;
+    //this.style.visibility= 'hidden';
+    
   }
 
   /*onEditContent(id){

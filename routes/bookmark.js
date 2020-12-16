@@ -117,7 +117,7 @@ router.get('/dashboard/:id',(req,res,next)=> {
 })
 
 // @desc show content for particular user
-// @route GET /content/user/:id
+// @route GET /bookmark/user/:id
 router.get('/user/:id',(req,res,next)=> {
 
     Bookmark.getUserBookmark(req.params.id,(err, bookmark)=> {

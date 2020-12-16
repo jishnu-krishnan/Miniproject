@@ -34,6 +34,9 @@ export class AdminDashboardComponent implements OnInit {
   profile :String;
   reason:String;
   data : any
+  limit:Number;
+  temp:Number;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -41,6 +44,8 @@ export class AdminDashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+    this.limit=9
 
     const user= JSON.parse(localStorage.getItem('user'))
 
@@ -55,6 +60,7 @@ export class AdminDashboardComponent implements OnInit {
      this.authService.showPublicDashboard().subscribe(res => {
       this.bookmark=res
       this.type='Bookmark'
+      this.temp=res.length
       console.log(res)
     },(error)=> {
       console.log(error)
@@ -74,6 +80,7 @@ export class AdminDashboardComponent implements OnInit {
       //console.log(res)
       this.bookmark=res
       this.type='Bookmark'
+      this.temp=res.length
       //console.log(this.bookmark)
     },(error)=> {
       console.log(error)
@@ -89,11 +96,19 @@ export class AdminDashboardComponent implements OnInit {
       console.log(res)
       this.bookmark=res
       this.type='Contents'
-
+      this.temp=res.length
     },(error)=>{
       console.log(error)
     });
   }
+
+
+  showMore(){
+    this.limit=this.temp;
+    //this.style.visibility= 'hidden';
+    
+  }
+
 
  /*  onDeleteBookmark(id){
     if(window.confirm('Are you sure?')){
@@ -134,4 +149,7 @@ export class AdminDashboardComponent implements OnInit {
     
     });
   }
+
+
+
 }

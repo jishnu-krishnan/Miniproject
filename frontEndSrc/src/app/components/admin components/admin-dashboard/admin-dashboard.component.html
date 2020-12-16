@@ -31,8 +31,8 @@
 </div>
 <div class="container">
   <div class="row">
-      <div class="col s12 m6 l3" *ngFor="let val of bookmark | filter:keyword">
-        <div class="card">
+      <div class="col s12 m6 l4" *ngFor="let val of bookmark | filter:keyword; let i=index  ">
+        <div class="card" *ngIf="limit > i ">
           <div class="card-image" > 
             <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(val._id)"><i class="material-icons">delete</i></a>
           </div>
@@ -47,6 +47,9 @@
           </div>
         </div>
       </div>
+  </div>
+  <div class="center" *ngIf="temp >10 "> 
+    <button class="btn blue" (click)='showMore()' onClick = "this.style.visibility= 'hidden';" >Show more</button>
   </div>
 </div>
 

@@ -34,8 +34,8 @@
 <div class="container">
   
   <div class="row">
-      <div class="col s12 m6 l4" *ngFor="let val of bookmark | filter: searchText">
-        <div class="card">
+      <div class="col s12 m6 l4" *ngFor="let val of bookmark | filter: searchText; let i=index">
+        <div class="card" *ngIf="limit > i ">
           <div class="card-image" >
             <!-- <img src="https://lorempixel.com/100/190/nature/6"> -->
 <!--               <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onDeleteContent(con._id)"><i class="material-icons">delete</i></a>
@@ -57,6 +57,9 @@
           </div>
         </div>
       </div>
+  </div>
+  <div class="center" *ngIf="temp >10 "> 
+    <button class="btn blue" (click)='showMore()' onClick = "this.style.visibility= 'hidden';" >Show more</button>
   </div>
 </div>
 
