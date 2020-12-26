@@ -1,5 +1,6 @@
 const express = require('express');
 const Bookmark = require('../model/bookmark');
+const Content = require('../model/content')
 const router = express.Router();
 //const Bookmark = require('../model/bookmark');
 const localStorage = require('node-localstorage');
@@ -142,7 +143,14 @@ router.delete('/delete/:id',(req,res,next) => {
 
         if(err) throw err;
         if(!bookmark){
-            return res.json({success:false, msg:'No bookmark found'})
+            Content.deleteContent(req.params.id,(err,content)=>{
+                if(!content){
+                    return res.json({success:false, msg:'No content and bookamrk found'})
+                } else {
+                    return res.status(200).json({success:true, msg:'content deleted'})
+                }
+            })
+            
         } else {
             return res.status(200).json({success:true, msg:'Bookmark deleted'})
         }

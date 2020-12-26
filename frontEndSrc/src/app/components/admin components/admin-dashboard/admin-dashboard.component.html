@@ -40,8 +40,8 @@
             <h4>{{val.title}}</h4>
             <a target="_blank" href="{{val.link}}">{{val.link}}</a>
 
-            <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+'...':(val.body)"></p>
-            <a [routerLink]="['/admin/viewcontent',val._id]">View More.....</a>
+            <p [innerHTML]="(val.body.length>200)? (val.body | slice:0:200)+' ':(val.body)"></p>
+            <a *ngIf="val.body.length>200" [routerLink]="['/admin/viewcontent',val._id]">View More.....</a>
             
             
           </div>

@@ -74,7 +74,7 @@ temp:Number;
       this.bookmark=res
       this.type='bookmark'
       this.temp=res.length
-      //console.log(this.bookmark)
+      console.log(this.bookmark)
     },(error)=> {
       console.log(error)
     });
@@ -85,7 +85,7 @@ temp:Number;
     const user= JSON.parse(localStorage.getItem('user'))
 
     this.authService.showContent(user.id).subscribe(res =>{
-      console.log(res)
+      //console.log(res)
       this.bookmark=res
       this.type='content'
       this.temp=res.length
@@ -106,7 +106,7 @@ temp:Number;
     }
   }
   onRequest(id){
-    if(window.confirm('Are you Sure?')){
+    if(window.confirm('You must read terms & condition, follows it')){
       const up={
         status:'pending'
       }

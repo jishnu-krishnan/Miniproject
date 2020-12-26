@@ -31,7 +31,7 @@
         <div class="row" *ngFor="let c of comment"> 
             <div class="chip">
                 <i class="fa fa-user" style="padding-right: .2cm;" aria-hidden="true"></i>
-                {{c.user.name}}
+                <a [routerLink]="['/users/bookmark',c.user._id]">{{c.user.name}}</a>
             </div>
             {{c.comment}}
         </div>

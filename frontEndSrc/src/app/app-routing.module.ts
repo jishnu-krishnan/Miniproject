@@ -17,6 +17,8 @@ import { AdminContentComponent } from './components/admin components/admin-conte
 import { AdminBookmarkComponent } from './components/admin components/admin-bookmark/admin-bookmark.component';
 import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
 import { UserContentComponent } from './components/user components/user-content/user-content.component';
+import { TermsandconditionsComponent } from './components/user components/termsandconditions/termsandconditions.component';
+
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -40,7 +42,7 @@ const routes: Routes = [
   {path:'admin/bookmark', component:AdminBookmarkComponent, canActivate:[AuthGuard]},
   {path:'admin/viewcontent/:id', component:ViewMoreComponent, canActivate:[AuthGuard]},
   {path:'users/bookmark/:id', component:UserContentComponent, canActivate:[AuthGuard]},
-  //{path:'users/bookmark', component:UserContentComponent, canActivate:[AuthGuard]}
+  {path:'users/termsandconditions', component:TermsandconditionsComponent, canActivate:[AuthGuard]}
 
 ];
 

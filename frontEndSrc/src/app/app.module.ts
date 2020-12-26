@@ -42,6 +42,7 @@ import { MyDialogComponent } from './components/admin components/my-dialog/my-di
 import { ViewMoreComponent } from './components/admin components/view-more/view-more.component';
 import { UserContentComponent } from './components/user components/user-content/user-content.component';
 import { UserViewComponent } from './components/user components/user-view/user-view.component';
+import { TermsandconditionsComponent } from './components/user components/termsandconditions/termsandconditions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import { UserViewComponent } from './components/user components/user-view/user-v
     ViewMoreComponent,
     UserContentComponent,
     UserViewComponent,
+    TermsandconditionsComponent,
     
   ],
   imports: [
