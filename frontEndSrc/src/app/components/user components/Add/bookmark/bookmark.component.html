@@ -8,11 +8,11 @@
     <form [formGroup]="bookmarkForm" (submit)="onSubmit()" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="link" value="{{bookmark.link}}">
+                <input type="text" formControlName="link" value="{{bookmark.link}}" (focusout)="getData()">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.link.errors?.required">
                     *Link is required.
                 </div> 
-                <label for="link">Link</label>
+                <label for="link" class="active">Link</label>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="input-field">
-                <input type="text" formControlName="title" value="{{bookmark.title}}">
+                <input type="text" class="ng-touched ng-dirty ng-valid" formControlName="title" value="{{bookmark.title}}">
                 <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
                     *Title is required.
                 </div> 

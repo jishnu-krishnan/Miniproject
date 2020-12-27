@@ -215,7 +215,8 @@ export class AuthService {
 
   // show description while paste link
   getDes(link):Observable<any>{
-    let url= `${this.bookmarkUri}/get`
+    let url= `${this.bookmarkUri}/add`
+    //console.log(link)
     return this.http.put(url,link, {headers:this.headers} ).pipe(catchError(this.errorMgmt))
 
   }

@@ -55,22 +55,28 @@ router.get('/add/:id',(req,res,next)=>{
     })
 }) 
  */
+
 // @desc get description of site
-// @route PUT /bookmark/get
-router.put('/get',(req,res,next)=>{
-    console.log(req.body.link,'jm')
-const li=req.body.link
+// @route GET /bookmark/add
+
+
+
+// @desc get description of site
+// @route PUT /bookmark/add
+router.put('/add',(req,res,next)=>{
+    //console.log(req.body)
+    const li=req.body.link
     //https://beebom.com/best-bookmark-managers/
-    UrlMetadata(li).then(
+     UrlMetadata(li).then(
         function (metadata) { // success handler
-          console.log(metadata)
+          //console.log(metadata)
           return res.json(metadata)
         },
         function (error) { // failure handler
           console.log(error)
           //return res.json({success: false, msg:'No Meta description found'})
 
-        })
+        }) 
 })
 
 // @desc view requests

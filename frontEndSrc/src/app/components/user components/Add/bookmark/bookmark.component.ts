@@ -71,16 +71,22 @@ export class BookmarkComponent implements OnInit {
     return this.bookmarkForm.controls;
   } 
 
-  /* getData(){
+   getData(){
     const l =this.bookmarkForm.value.link
     //console.log(l)
-    this.authService.getDes(l).subscribe(res=>{
-      console.log(res)
-      this.router.navigateByUrl('/bookmark/add')
+    const lk={
+      link:l
+    }
+    this.authService.getDes(JSON.stringify(lk)).subscribe(res=>{
+      //console.log(res)
+      this.bookmarkForm.controls['title'].setValue(res.title)
+      this.bookmarkForm.controls['body'].setValue(res.Description)
+      //this.router.navigateByUrl('/bookmark/add')
     })
   
   }
- */
+
+
   onSubmit(){
     this.submitted= true;
     const b= this.bookmarkForm.value
