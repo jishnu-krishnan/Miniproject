@@ -55,7 +55,7 @@ export class ViewContentComponent implements OnInit {
   }
 
   onRequest(id){
-    if(window.confirm('Are you Sure?')){
+    if(window.confirm('You must read terms & condition, follows it')){
       const up={
         status:'pending'
       }
